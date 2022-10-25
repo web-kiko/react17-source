@@ -1,0 +1,22 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1666693638321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666694446831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,21 +2,33 @@\n   \"name\": \"react17-source\",\n   \"version\": \"0.1.0\",\n   \"private\": true,\n   \"dependencies\": {\n-    \"@testing-library/jest-dom\": \"^5.16.5\",\n-    \"@testing-library/react\": \"^13.4.0\",\n-    \"@testing-library/user-event\": \"^13.5.0\",\n-    \"react\": \"^17.2.0\",\n-    \"react-dom\": \"^17.2.0\",\n-    \"react-scripts\": \"5.0.1\",\n-    \"web-vitals\": \"^2.1.4\"\n+    \"@babel/core\": \"^7.16.0\",\n+    \"@babel/plugin-proposal-decorators\": \"^7.16.0\",\n+    \"@babel/preset-env\": \"^7.16.0\",\n+    \"@testing-library/jest-dom\": \"^5.11.4\",\n+    \"@testing-library/react\": \"^11.1.0\",\n+    \"@testing-library/user-event\": \"^12.1.10\",\n+    \"classnames\": \"^2.3.1\",\n+    \"customize-cra\": \"^1.0.0\",\n+    \"immutable\": \"^4.0.0\",\n+    \"prop-types\": \"^15.7.2\",\n+    \"react\": \"^17.0.2\",\n+    \"react-app-rewired\": \"^2.1.8\",\n+    \"react-dom\": \"^17.0.2\",\n+    \"react-redux\": \"^7.2.6\",\n+    \"react-router-dom\": \"^5.3.0\",\n+    \"react-scripts\": \"4.0.3\",\n+    \"redux\": \"^4.1.2\",\n+    \"redux-thunk\": \"^2.4.0\",\n+    \"web-vitals\": \"^1.0.1\"\n   },\n   \"scripts\": {\n-    \"start\": \"react-scripts start\",\n-    \"build\": \"react-scripts build\",\n-    \"test\": \"react-scripts test\",\n-    \"eject\": \"react-scripts eject\"\n+    \"start\": \"react-app-rewired start\",\n+    \"build\": \"react-app-rewired build\",\n+    \"test\": \"react-app-rewired test\",\n+    \"eject\": \"react-app-rewired eject\"\n   },\n   \"eslintConfig\": {\n     \"extends\": [\n       \"react-app\",\n"
+                }
+            ],
+            "date": 1666693638321,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"react17-source\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"dependencies\": {\n    \"@testing-library/jest-dom\": \"^5.16.5\",\n    \"@testing-library/react\": \"^13.4.0\",\n    \"@testing-library/user-event\": \"^13.5.0\",\n    \"react\": \"^17.2.0\",\n    \"react-dom\": \"^17.2.0\",\n    \"react-scripts\": \"5.0.1\",\n    \"web-vitals\": \"^2.1.4\"\n  },\n  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test\",\n    \"eject\": \"react-scripts eject\"\n  },\n  \"eslintConfig\": {\n    \"extends\": [\n      \"react-app\",\n      \"react-app/jest\"\n    ]\n  },\n  \"browserslist\": {\n    \"production\": [\n      \">0.2%\",\n      \"not dead\",\n      \"not op_mini all\"\n    ],\n    \"development\": [\n      \"last 1 chrome version\",\n      \"last 1 firefox version\",\n      \"last 1 safari version\"\n    ]\n  }\n}\n"
+        }
+    ]
+}
