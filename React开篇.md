@@ -61,11 +61,15 @@ react的纯粹体现在它的api上，一切都是围绕setState状态更新进�
 
 function Child() {
     console.log('Child');
-    return <div>Child</div>;
+
+    return (
+        <div>Child</div>
+        );
     }
 
 function Father(props) {
     const [num, setNum] = React.useState(0);
+
     return (
         <div onClick={() => {setNum(num + 1)}}>
         {num}
@@ -76,6 +80,7 @@ function Father(props) {
         
         
 function App() {
+
     return (
         <Father>
         <Child/>
@@ -121,3 +126,7 @@ class App extends React.Component {
 useEffect(() => {
   console.log('useEffect');
 }, [])
+
+# 最后
+
+那让我们开始下一章，react热身篇
