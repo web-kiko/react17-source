@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>requestIdelCallback</title>
+</head>
+
+<body>
+    <div id="ui">0</div>
+    <div>执行<span id="test">0</span></div>
+    <button onclick="mytest()">常规执行计算任务</button>
+    <button onclick="startRequestIdleCallback()">在requestIdleCallback中执行计算任务</button>
+    <script>
+        // 任务队列
+        let task1 = [
+            function () {
+                for (var i = 0; i < 3000; i++) {
+                    console.log(i)
+                }
+                console.log("第一个任务");
+                document.getElementById('test').innerHTML = 1
+            },
+            function () {
+                for (var i = 0; i < 3000; i++) {
+                    console.log(i)
+                }
+                console.log("第二个任务");
+                document.getElementById('test').innerHTML = 2
+            },
+            function () {
+                for (var i = 0; i < 3000; i++) {
+                    console.log(i)
+                }
+                console.log("第三个任务");
+                document.getElementById('test').innerHTML = 3
+            },
+        ];
+        let task2 = [
+            function () {
+                for (var i = 0; i < 3000; i++) {
+                    console.log(i)
+                }
+                console.log("第一个任务");
+                document.getElementById('test').innerHTML = 1
+            },
+            function () {
+                for (var i = 0; i < 3000; i++) {
+                    console.log(i)
+                }
+                console.log("第二个任务");
+                document.getElementById('test').innerHTML = 2
+            },
+            function () {
+                for (var i = 0; i < 3000; i++) {
+                    console.log(i)
+                }
+                console.log("第三个任务");
+                document.getElementById('test').innerHTML = 3
+            },
+        ];
+        setInterval(() => {
+            document.getElementById('ui').innerHTML = parseInt(document.getElementById('ui').innerHTML) + 1
+        }, 100)
+        //执行mytest文件会影响上面动态dom的渲染
+        function mytest() {
+            if (task1.length > 0) {
+                work1(task1)
+            }
+        }
+
+        //将js计算任务放在requestIdleCallback中运算
+        function startRequestIdleCallback() {
+            requestIdleCallback(myNonEssentialWork, { timeout: 2000 });
+        }
+
+        function myNonEssentialWork(deadline) {
+            //alert(deadline.timeRemaining())
+            console.log(deadline, deadline.timeRemaining())
+            // 如果帧内有富余的时间，或者超时
+            while ((deadline.timeRemaining() > 0 || deadline.didTimeout) && task2.length > 0) {
+                work2(task2);
+            }
+            //开启下一个空闲时间的回调函数
+            if (task2.length > 0) { requestIdleCallback(myNonEssentialWork); }
+        }
+        // ​
+        function work1(tasks) {
+            tasks.shift()();
+            console.log('执行任务');
+            if (task1.length > 0) {
+                work1(task1)
+
+            }
+
+        }
+        function work2(tasks) {
+            tasks.shift()();
+            console.log('执行任务');
+        }
+
+    </script>
+</body>
+
+</html>
