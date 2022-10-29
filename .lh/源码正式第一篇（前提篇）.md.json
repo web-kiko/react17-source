@@ -1,0 +1,18 @@
+{
+    "sourceFile": "源码正式第一篇（前提篇）.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1667032902929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1667032902929,
+            "name": "Commit-0",
+            "content": "# 什么是帧，一帧能做什么\r\n我们知道一般的浏览器每秒钟会绘制60帧，也就是每帧需要16ms左右，如果js计算任务长时间占用线程那个，会导致一些ui无法及时得到渲染，出现卡顿\r\n\r\n一帧内需要完成如下六个步骤的任务：\r\n\r\n1.处理用户的交互\r\n\r\n2.JS 解析执行\r\n\r\n3.帧开始。窗口尺寸变更，页面滚去等的处理\r\n\r\n4.requestAnimationFrame(rAF)\r\n\r\n5.布局\r\n\r\n6.绘制\r\n\r\n# 什么是requestAnimationFrame\r\n\r\n相信大家都知道动画的基础就是在于快速的画面刷新，常见的刷新频率单位是 每秒传输帧数(FPS = Frames Per Second) ，有时我们也直接简称为 帧 。在游戏或是视频中，24 帧以上对于肉眼来说就能算是流畅不卡顿，而常见的刷新频率通常为 60 FPS。\r\n\r\n同样的，我们透过浏览器访问网页也需要进行页面刷新。对于浏览器来说所谓的网页也就是一个用 html 格式所描述的一个动态画面，DOM 元素的移动、改变、滚轮等就相当于是在页面的一次刷新中对元素的偏移、变形进行重新计算，最后 重新渲染 在浏览器的页面中，而这就是所谓的页面刷新,那什么是requestAnimationFrame\r\n\r\n简单来说requestAnimationFrame就是为了防止掉帧使用得技术，因为rAF 会在下次页面刷新之前调用回调函数,已经把自己理解得requestAnimationFrame放在了[我的代码](https://github.com/web-kiko/react17-source) 并定位到 public 文件夹下的rAF.html\r\n\r\n# 什么是requestIdleCallBack\r\n\r\n我们首先了解一下这个函数的作用\r\n![](https://yck-1254263422.cos.ap-shanghai.myqcloud.com/blog/2019-06-04-155145.png)\r\n\r\n该函数的回调方法会在浏览器的空闲时期依次调用， 可以让我们在事件循环中执行一些任务，并且不会对像动画和用户交互这样延迟敏感的事件产生影响。\r\n\r\n# 如何实现 requestIdleCallback\r\n说到多次执行，那么肯定得使用定时器了。在多种定时器中，唯有 `requestAnimationFrame` 具备一定的精确度，因此 `requestAnimationFrame` 就是当下实现 `requestIdleCallback` 的一个步骤\r\n\r\n我们知道一般的浏览器每秒钟会绘制60帧，也就是每帧需要16ms左右，如果一帧内完成了任务并且完成后没超过 16 ms，说明时间有富余，此时就会执行 requestIdleCallback 里注册的任务\r\n\r\n简单来说就是requestIdleCallBack可以让我们在浏览器空闲的时候做一些事情，把requestIdleCallBack代码放在[我的代码](https://github.com/web-kiko/react17-source) 并定位到 public 文件夹下的rIdleCallBack.html中\r\n\r\n\r\n# 最后 \r\n\r\n阅读源码是一个很枯燥的过程，但是收益也是巨大的。\r\n\r\n另外写这系列是个很耗时的工程，需要维护代码注释，还得把文章写得尽量让读者看懂，最后还得配上画图，如果你觉得文章看着还行，就请不要吝啬你的点赞。\r\n"
+        }
+    ]
+}

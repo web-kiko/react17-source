@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: kiko
- * @Date: 2022-10-26 16:54:33
- * @LastEditors: kiko
- * @LastEditTime: 2022-10-29 16:24:04
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
 

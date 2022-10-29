@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1667022657495,
@@ -60,6 +60,18 @@
                 {
                     "date": 1667031845126,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,15 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:20:16\n+ * @LastEditTime: 2022-10-29 16:24:04\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n+\n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n let element2 =React.createElement(\"h1\", {\n   className: \"title\",\n   style: {\n@@ -19,6 +20,7 @@\n }, \"hello react \");\n console.log(element2);\n //挂在\n ReactDOM.render(\n+  // element1,\n   element2,\n   document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667032897795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,4 @@\n-/*\n- * @Descripttion: \n- * @version: \n- * @Author: kiko\n- * @Date: 2022-10-26 16:54:33\n- * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:24:04\n- */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n"
+                },
+                {
+                    "date": 1667032932336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2022-10-26 16:54:33\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2022-10-29 16:42:12\n+ */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n"
+                },
+                {
+                    "date": 1667033222333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,4 @@\n-/*\n- * @Descripttion: \n- * @version: \n- * @Author: kiko\n- * @Date: 2022-10-26 16:54:33\n- * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:42:12\n- */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n"
                 }
             ],
             "date": 1667022657495,
