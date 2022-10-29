@@ -1,17 +1,26 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: kiko
+ * @Date: 2022-10-26 16:54:33
+ * @LastEditors: kiko
+ * @LastEditTime: 2022-10-29 16:24:04
+ */
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+//let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//jsx通过babel转化成React.createElement的方法而他的返回值就是VNode
+let element2 =React.createElement("h1", {
+  className: "title",
+  style: {
+    color: 'red'
+  }
+}, "hello react ");
+console.log(element2);
+//挂在
+ReactDOM.render(
+  // element1,
+  element2,
+  document.getElementById("root"));

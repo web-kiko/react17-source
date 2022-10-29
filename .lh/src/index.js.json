@@ -1,0 +1,70 @@
+{
+    "sourceFile": "src/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1667022657495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667023745520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,15 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2022-10-26 16:54:33\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2022-10-29 14:09:05\n+ */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n \n+let element =<h1>hello</h1>\n+\n+ReactDOM.render(element, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667023877884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,15 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 14:09:05\n+ * @LastEditTime: 2022-10-29 14:11:17\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n \n-let element =<h1>hello</h1>\n+let element =<h1 className='title' style={{color:'red'}}>hello</h1>\n\\ No newline at end of file\n \n-ReactDOM.render(element, document.getElementById(\"root\"));\n+ReactDOM.render(\n+  element,\n+  document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667024038092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 14:11:17\n+ * @LastEditTime: 2022-10-29 14:13:57\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n-\n+//jsx通过babel转化成React.element的方法而他的返回值就是VNode\n let element =<h1 className='title' style={{color:'red'}}>hello</h1>\n \n ReactDOM.render(\n   element,\n"
+                },
+                {
+                    "date": 1667030469683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,17 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 14:13:57\n+ * @LastEditTime: 2022-10-29 16:01:09\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //jsx通过babel转化成React.element的方法而他的返回值就是VNode\n let element =<h1 className='title' style={{color:'red'}}>hello</h1>\n-\n+//看看element打印什么\n+console.log(element);\n+//挂在\n ReactDOM.render(\n   element,\n   document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667030849039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,16 +3,21 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:01:09\n+ * @LastEditTime: 2022-10-29 16:07:28\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n-//jsx通过babel转化成React.element的方法而他的返回值就是VNode\n-let element =<h1 className='title' style={{color:'red'}}>hello</h1>\n-//看看element打印什么\n+//jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n+let element =React.createElement=(\"h1\",{\n+  className:\"title\",\n+  style:{\n+    color:\"red\"\n+  }\n+},\"hello react\")\n+\n console.log(element);\n //挂在\n ReactDOM.render(\n   element,\n"
+                },
+                {
+                    "date": 1667030929101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,18 +3,18 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:07:28\n+ * @LastEditTime: 2022-10-29 16:08:48\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n let element =React.createElement=(\"h1\",{\n   className:\"title\",\n   style:{\n-    color:\"red\"\n+    color:'red'\n   }\n },\"hello react\")\n \n console.log(element);\n"
+                },
+                {
+                    "date": 1667030957179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   className:\"title\",\n   style:{\n     color:'red'\n   }\n-},\"hello react\")\n+},\"hello react\");\n \n console.log(element);\n //挂在\n ReactDOM.render(\n"
+                },
+                {
+                    "date": 1667031093782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:08:48\n+ * @LastEditTime: 2022-10-29 16:11:33\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n"
+                },
+                {
+                    "date": 1667031182630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,15 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:11:33\n+ * @LastEditTime: 2022-10-29 16:13:02\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n-let element =React.createElement=(\"h1\",{\n+let element = React.createElement=(\"h1\",{\n   className:\"title\",\n   style:{\n     color:'red'\n   }\n"
+                },
+                {
+                    "date": 1667031326756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,22 +3,23 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:13:02\n+ * @LastEditTime: 2022-10-29 16:15:26\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n+let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n-let element = React.createElement=(\"h1\",{\n+let element2 = React.createElement=(\"h1\",{\n   className:\"title\",\n   style:{\n     color:'red'\n   }\n },\"hello react\");\n \n-console.log(element);\n+console.log(element2);\n //挂在\n ReactDOM.render(\n-  element,\n+  element2,\n   document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667031352662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n-let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n+//let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n let element2 = React.createElement=(\"h1\",{\n   className:\"title\",\n   style:{\n"
+                },
+                {
+                    "date": 1667031616720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,22 +3,21 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:15:26\n+ * @LastEditTime: 2022-10-29 16:20:16\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n-let element2 = React.createElement=(\"h1\",{\n-  className:\"title\",\n-  style:{\n-    color:'red'\n+let element2 =React.createElement(\"h1\", {\n+  className: \"title\",\n+  style: {\n+    color: 'red'\n   }\n-},\"hello react\");\n-\n+}, \"hello react \");\n console.log(element2);\n //挂在\n ReactDOM.render(\n   element2,\n"
+                },
+                {
+                    "date": 1667031845126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,15 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:20:16\n+ * @LastEditTime: 2022-10-29 16:24:04\n  */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n+\n //jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n let element2 =React.createElement(\"h1\", {\n   className: \"title\",\n   style: {\n@@ -19,6 +20,7 @@\n }, \"hello react \");\n console.log(element2);\n //挂在\n ReactDOM.render(\n+  // element1,\n   element2,\n   document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1667022657495,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport ReactDOM from 'react-dom';\n\n\n"
+        }
+    ]
+}
