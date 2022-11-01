@@ -225,6 +225,7 @@ function constructClassInstance(workInProgress, ctor, props) {
 
 
 ```
+
 ![image text](https://s2.loli.net/2022/10/29/KlC2zX6IjFQPYge.png)
 
 constructClassInstance正如我们推测的一样，这里通过new ctor(props, context)创建了组件实例，除此之外，react后续版本已将部分声明周期钩子标记为不安全，对于钩子命名的加工也在此方法中。
@@ -375,10 +376,12 @@ function createElement(type, props, rootContainerElement, parentNamespace) {
 ```
 
 在createElement方法中，react会根据你的标签类型来决定怎么创建dom，比如如果你是script，那就创建一个div用于包裹一个script标签。而我们的span很显然就是通过ownerDocument.createElement(type)创建，如下图:
+
 ![image text](https://s2.loli.net/2022/10/29/ykRBg2QUOTxmwq3.png)
 
 
 创建完成后，此时的span节点还是一个啥都没有的空span，所以通过`updateFiberProps`将还未加工的span的子节点以及其它属性强行赋予给span，在之后会进一步加工，之后返回我们的span：
+
 ![image text](https://s2.loli.net/2022/10/29/AIbYj2CwBsNFVGd.png)
 
 然后来到`finalizeInitialChildren`方法，这里开始对创建的span节点的子元素进一步加工，其实就是文本111
@@ -518,12 +521,14 @@ function appendChildToContainer(container, child) {
 ```
 
 由于我们定义的组件非常简单，P组件只有一个span标签，所以这里的parentNode其实就是容器根节点，当执行完`parentNode.appendChild(child)`，可以看到页面就出现了111了。
+
 ![image text](https://s2.loli.net/2022/10/29/Df8wEbH1eu6phd5.png)
 
 
 至此，组件的虚拟dom生成，真实dom的创建，加工以及渲染全部执行完毕。
 
 可能大家对于这个过程还是比较迷糊，我大致画个图描述下这个过程：
+
 ![image text](https://s2.loli.net/2022/10/29/RNmeYcQ2JuWSCIP.png)
 
 
@@ -532,6 +537,7 @@ function appendChildToContainer(container, child) {
 
 
 前文，我们验证了Class组件是通过new得到组件实例，然后开展后续操作，那对于函数组件，是不是直接调用拿到子组件呢？这里我简单跟了下源码，发现了如下代码：
+
 ![](https://s2.loli.net/2022/10/29/hdt4UgOZnEHXpmw.png)
 
 ```jsx
@@ -577,7 +583,7 @@ react的源码比较多，一个react一个react-dom加起来代码量都几万�
 
 阅读源码是一个很枯燥的过程，但是收益也是巨大的。
 
-另外写这系列是个很耗时的工程，需要维护代码注释，还得把文章写得尽量让读者看懂，最后还得配上画图，如果你觉得文章看着还行，就请不要吝啬你的点赞。
+另外写这系列是个很耗时的工程，需要维护代码注释，还得把文章写得尽量让读者看懂，最后还得配上画图，如果你觉得文章看着还行，就请不要吝啬你的点赞。下一篇又一篇重点(Fiber篇)
 
 
 
