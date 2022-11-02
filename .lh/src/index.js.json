@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 38,
+            "activePatchIndex": 40,
             "patches": [
                 {
                     "date": 1667022657495,
@@ -160,6 +160,14 @@
                 {
                     "date": 1667380609212,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 17:14:53\n+ * @LastEditTime: 2022-11-02 17:16:48\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n@@ -41,12 +41,12 @@\n //     color: \"red\"\n //   },\n //   key: \"1\"\n // }, \"前端小伙子\"), \n-//   React.createElement(MyFuncCmp, {\n+//   React.createElement(MountFunctionComponent, {\n //     name: \"真帅\"\n // }), \n-//   React.createElement(MyClassCmp, {\n+//   React.createElement(MountClassComponent, {\n //   name: \"还有钱\"\n // }));\n console.log(jsx);\n \n"
+                },
+                {
+                    "date": 1667398122373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 17:16:48\n+ * @LastEditTime: 2022-11-02 22:08:42\n  */\n-import React from \"./source/react\";\n-import ReactDOM from \"./source/react-dom\";\n+import React from \"./vNode/react\";\n+import ReactDOM from \"./vNode/react-dom\";\n \n function MountFunctionComponent(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n"
+                },
+                {
+                    "date": 1667404096937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,52 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 22:08:42\n+ * @LastEditTime: 2022-11-02 23:48:16\n  */\n-import React from \"./vNode/react\";\n-import ReactDOM from \"./vNode/react-dom\";\n \n+\n+\n+\n+\n+//jsx的实现\n+\n+/* import React from \"react\";\n+import ReactDOM from \"react-dom\";\n+\n+let jsx = React.createElement(\"div\", null,\n+  React.createElement(\"h1\", null, \"你好\"),\n+  React.createElement(\"div\", {\n+    className: \"class_0\",\n+    style: {\n+    color: \"red\"\n+  },\n+  key: \"1\"\n+}, \"前端小伙子\"), \n+  React.createElement(MountFunctionComponent, {\n+    name: \"真帅\"\n+}), \n+  React.createElement(MountClassComponent, {\n+  name: \"还有钱\"\n+}));\n+\n+ */\n+\n+\n+\n+\n+//虚拟dom的创建和render的实现，并对函数组件和类组件进行了简单的处理\n+\n+/* \n+import React from \"./source/vNode/react\";\n+import ReactDOM from \"./source/vNode/react-dom\";\n+\n function MountFunctionComponent(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n \n+\n class MountClassComponent extends React.Component {\n   render() {\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n@@ -30,24 +65,33 @@\n     <MountFunctionComponent name=\"真帅\" />\n     <MountClassComponent  name=\"还有钱\" />\n   </div>\n );\n+ */\n \n \n-// let jsx = React.createElement(\"div\", null,\n-//   React.createElement(\"h1\", null, \"你好\"),\n-//   React.createElement(\"div\", {\n-//     className: \"class_0\",\n-//     style: {\n-//     color: \"red\"\n-//   },\n-//   key: \"1\"\n-// }, \"前端小伙子\"), \n-//   React.createElement(MountFunctionComponent, {\n-//     name: \"真帅\"\n-// }), \n-//   React.createElement(MountClassComponent, {\n-//   name: \"还有钱\"\n-// }));\n+\n+\n+//类组件的具体实现和组件更新\n+\n+import React from \"react\";\n+import ReactDOM from \"react-dom\";\n+\n+class MountClassComponent extends React.Component {\n+  render() {\n+    return (\n+      <div className=\"title1\" >类组件表示:{this.props.name}</div>\n+    );\n+  }\n+}\n+\n+let jsx = (\n+  <div>\n+    <h1 >你好</h1>\n+    <MountClassComponent  name=\"还有钱\" />\n+  </div>\n+);\n+\n+\n console.log(jsx);\n \n ReactDOM.render(jsx, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1667022657495,

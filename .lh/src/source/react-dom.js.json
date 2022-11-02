@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 28,
+            "activePatchIndex": 42,
             "patches": [
                 {
                     "date": 1667363253637,
@@ -120,6 +120,62 @@
                 {
                     "date": 1667380317815,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,10 +42,10 @@\n //处理类组件\r\n function mountClassComponent(vNode) {\r\n     let { type, props } = vNode\r\n     let classInstance = new type(props)\r\n-    let FvNode = classInstance.render()    //render的返回值才虚拟DOM\r\n-    return createDOM(FvNode)\r\n+    let fvNode = classInstance.render()    //render的返回值才虚拟DOM\r\n+    return createDOM(fvNode)\r\n }\r\n \r\n //处理函数组件\r\n function mountFunctionComponent(vNode) {\r\n"
+                },
+                {
+                    "date": 1667380809381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,8 @@\n             }\r\n         }\r\n     }\r\n \r\n-\r\n     if (oldProps) {\r\n         for (let key in oldProps) {\r\n             if (!newProps[key]) DOM[key] = null\r\n         }\r\n"
+                },
+                {
+                    "date": 1667385823480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,9 @@\n }\r\n \r\n //更新children\r\n function handleChildren(DOM, children) {\r\n+    \r\n     if (children instanceof Array) {\r\n         children.forEach(child => render(child, DOM))\r\n     } else {\r\n         render(children, DOM)\r\n"
+                },
+                {
+                    "date": 1667395076276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,8 +91,15 @@\n     }\r\n }\r\n \r\n \r\n+//实现更新\r\n+function twoVNode (parentDom,oldVNode,newVNode){\r\n+    //获取到新的真实dom\r\n+    let newVNode =createDOM(newVNode)\r\n+\r\n+\r\n+}\r\n const ReactDOM = {\r\n     render\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1667395148109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,10 @@\n \r\n //实现更新\r\n function twoVNode (parentDom,oldVNode,newVNode){\r\n     //获取到新的真实dom\r\n-    let newVNode =createDOM(newVNode)\r\n+    let newDom =createDOM(newVNode)\r\n+    let oldDom =createDOM(oldVNode)\r\n \r\n \r\n }\r\n const ReactDOM = {\r\n"
+                },
+                {
+                    "date": 1667395398039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,12 +92,14 @@\n }\r\n \r\n \r\n //实现更新\r\n-function twoVNode (parentDom,oldVNode,newVNode){\r\n+export function twoVNode (parentDom,oldVNode,newVNode){\r\n     //获取到新的真实dom\r\n     let newDom =createDOM(newVNode)\r\n     let oldDom =createDOM(oldVNode)\r\n+    //更新\r\n+    parentDom.replaceChild(newVNode,oldVNode)\r\n \r\n \r\n }\r\n const ReactDOM = {\r\n"
+                },
+                {
+                    "date": 1667396193314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,17 +42,17 @@\n //处理类组件\r\n function mountClassComponent(vNode) {\r\n     let { type, props } = vNode\r\n     let classInstance = new type(props)\r\n-    let fvNode = classInstance.render()    //render的返回值才虚拟DOM\r\n-    return createDOM(fvNode)\r\n+    let cvNode = classInstance.render()    //获取vNode\r\n+    return createDOM(cvNode)\r\n }\r\n \r\n //处理函数组件\r\n function mountFunctionComponent(vNode) {\r\n     let { type, props } = vNode\r\n-    let cvNode = type(props)       //函数执行的返回值就是虚拟DOM\r\n-    return createDOM(cvNode)\r\n+    let fvNode = type(props)       //函数执行的返回值就是虚拟DOM\r\n+    return createDOM(fvNode)\r\n }\r\n \r\n //更新props\r\n function updateProps(DOM, oldProps, newProps) {  //props:{children, className, style, onXXX}\r\n"
+                },
+                {
+                    "date": 1667396209508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n //处理类组件\r\n function mountClassComponent(vNode) {\r\n     let { type, props } = vNode\r\n     let classInstance = new type(props)\r\n-    let cvNode = classInstance.render()    //获取vNode\r\n+    let cvNode = classInstance.render()    //获取类组件vNode\r\n     return createDOM(cvNode)\r\n }\r\n \r\n //处理函数组件\r\n"
+                },
+                {
+                    "date": 1667396216298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n //处理类组件\r\n function mountClassComponent(vNode) {\r\n     let { type, props } = vNode\r\n     let classInstance = new type(props)\r\n+    \r\n     let cvNode = classInstance.render()    //获取类组件vNode\r\n     return createDOM(cvNode)\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1667396231128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     //真实dom\r\n     let DOM\r\n \r\n     if (typeof type === \"function\") {\r\n-        if (type.isClassComponent) {       //判断是类式组件还是函数式组件，分别处理\r\n+        if (type.isClassComponent) {     //判断是类式组件还是函数式组件，分别处理\r\n             return mountClassComponent(vNode)\r\n         }\r\n         return mountFunctionComponent(vNode)\r\n     } else {\r\n@@ -42,9 +42,9 @@\n //处理类组件\r\n function mountClassComponent(vNode) {\r\n     let { type, props } = vNode\r\n     let classInstance = new type(props)\r\n-    \r\n+\r\n     let cvNode = classInstance.render()    //获取类组件vNode\r\n     return createDOM(cvNode)\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1667396240648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     //真实dom\r\n     let DOM\r\n \r\n     if (typeof type === \"function\") {\r\n-        if (type.isClassComponent) {     //判断是类式组件还是函数式组件，分别处理\r\n+        if (type.isClassComponent) {   //判断是类式组件还是函数式组件，分别处理\r\n             return mountClassComponent(vNode)\r\n         }\r\n         return mountFunctionComponent(vNode)\r\n     } else {\r\n"
+                },
+                {
+                    "date": 1667396271802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,11 +18,11 @@\n     let DOM\r\n \r\n     if (typeof type === \"function\") {\r\n         if (type.isClassComponent) {   //判断是类式组件还是函数式组件，分别处理\r\n-            return mountClassComponent(vNode)\r\n+            return mountClassComponent(vNode) //类组件\r\n         }\r\n-        return mountFunctionComponent(vNode)\r\n+        return mountFunctionComponent(vNode) //函数组件\r\n     } else {\r\n         DOM = document.createElement(type)\r\n     }\r\n     // 处理props\r\n"
+                },
+                {
+                    "date": 1667396488065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,9 @@\n     let { type, props } = vNode\r\n     let classInstance = new type(props)\r\n \r\n     let cvNode = classInstance.render()    //获取类组件vNode\r\n+    classInstance.oldRenderVNode =cvNode\r\n     return createDOM(cvNode)\r\n }\r\n \r\n //处理函数组件\r\n"
+                },
+                {
+                    "date": 1667396688385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \r\n //处理类组件\r\n function mountClassComponent(vNode) {\r\n     let { type, props } = vNode\r\n-    let classInstance = new type(props)\r\n+    let classInstance = new type(props)//类的实例\r\n \r\n     let cvNode = classInstance.render()    //获取类组件vNode\r\n     classInstance.oldRenderVNode =cvNode\r\n     return createDOM(cvNode)\r\n"
+                },
+                {
+                    "date": 1667397035406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,28 @@\n //初始化\r\n-function render(vNode, container) {\r\n-    let newDom = createDOM(vNode)\r\n+function render(VNode, container) {\r\n+    let newDom = createDOM(VNode)\r\n     console.log(newDom);\r\n     //根据虚拟DOM生成真实DOM\r\n     container.appendChild(newDom)\r\n }\r\n \r\n //创建Dom\r\n-function createDOM(vNode) {\r\n+function createDOM(VNode) {\r\n     //如果是文本类型的，就直接创建文本节点，也是递归的出口\r\n-    if (Object(vNode) !== vNode) {\r\n-        return document.createTextNode(vNode)\r\n+    if (Object(VNode) !== VNode) {\r\n+        return document.createTextNode(VNode)\r\n     }\r\n \r\n-    let { type, props } = vNode\r\n+    let { type, props } = VNode\r\n     //真实dom\r\n     let DOM\r\n \r\n     if (typeof type === \"function\") {\r\n         if (type.isClassComponent) {   //判断是类式组件还是函数式组件，分别处理\r\n-            return mountClassComponent(vNode) //类组件\r\n+            return mountClassComponent(VNode) //类组件\r\n         }\r\n-        return mountFunctionComponent(vNode) //函数组件\r\n+        return mountFunctionComponent(VNode) //函数组件\r\n     } else {\r\n         DOM = document.createElement(type)\r\n     }\r\n     // 处理props\r\n@@ -39,22 +39,22 @@\n     return DOM\r\n }\r\n \r\n //处理类组件\r\n-function mountClassComponent(vNode) {\r\n-    let { type, props } = vNode\r\n+function mountClassComponent(VNode) {\r\n+    let { type, props } = VNode\r\n     let classInstance = new type(props)//类的实例\r\n \r\n-    let cvNode = classInstance.render()    //获取类组件vNode\r\n-    classInstance.oldRenderVNode =cvNode\r\n-    return createDOM(cvNode)\r\n+    let cVNode = classInstance.render()    //获取类组件VNode\r\n+    classInstance.oldRenderVNode =cVNode   //为了关联更新时候拿到旧时的\r\n+    return createDOM(cVNode)\r\n }\r\n \r\n //处理函数组件\r\n-function mountFunctionComponent(vNode) {\r\n-    let { type, props } = vNode\r\n-    let fvNode = type(props)       //函数执行的返回值就是虚拟DOM\r\n-    return createDOM(fvNode)\r\n+function mountFunctionComponent(VNode) {\r\n+    let { type, props } = VNode\r\n+    let fVNode = type(props)       //函数执行的返回值就是虚拟DOM\r\n+    return createDOM(fVNode)\r\n }\r\n \r\n //更新props\r\n function updateProps(DOM, oldProps, newProps) {  //props:{children, className, style, onXXX}\r\n"
                 }
             ],
             "date": 1667363253637,

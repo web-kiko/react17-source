@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1667362857209,
@@ -32,6 +32,70 @@
                 {
                     "date": 1667365714931,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n- * @Date: 2022-11-01 12:19:27\r\n+ * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 13:07:58\r\n  */\r\n class Component {\r\n"
+                },
+                {
+                    "date": 1667386740596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,15 +4,34 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 13:07:58\r\n+ * @LastEditTime: 2022-11-02 18:59:00\r\n  */\r\n+\r\n+// 更新器\r\n+class updater{\r\n+    constructor(classInstance){\r\n+        this.classInstance =classInstance //保存类的实例以便获取vNode\r\n+        this.paddingState =[] //用来保存数据的\r\n+    }\r\n+    addState(partialState){\r\n+        this.paddingState.push(partialState)\r\n+    }\r\n+\r\n+\r\n+}\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n     \r\n     constructor(props){\r\n         this.props = props\r\n+        this.state = {}\r\n+        //创建一个跟新器\r\n+        this.updater =new this.updater(this)\r\n     }\r\n+    setState(partialState){\r\n+        updater.addState(partialState)\r\n+    }\r\n }\r\n \r\n export default Component\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667387142509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,22 +4,32 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 18:59:00\r\n+ * @LastEditTime: 2022-11-02 19:05:42\r\n  */\r\n \r\n // 更新器\r\n class updater{\r\n     constructor(classInstance){\r\n         this.classInstance =classInstance //保存类的实例以便获取vNode\r\n         this.paddingState =[] //用来保存数据的\r\n     }\r\n+    //添加数据\r\n     addState(partialState){\r\n         this.paddingState.push(partialState)\r\n+        //更新数据\r\n+        this.emitUpdate()\r\n     }\r\n-\r\n-\r\n+    //更新数据\r\n+    emitUpdate(){\r\n+        //更新组件\r\n+        this.updateComponent()\r\n+    }\r\n+    //更新组件\r\n+    updateComponent(){\r\n+        \r\n+    }\r\n }\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n     \r\n"
+                },
+                {
+                    "date": 1667392697481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,46 +1,58 @@\n-\r\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 19:05:42\r\n+ * @LastEditTime: 2022-11-02 20:38:17\r\n  */\r\n \r\n // 更新器\r\n-class updater{\r\n-    constructor(classInstance){\r\n-        this.classInstance =classInstance //保存类的实例以便获取vNode\r\n-        this.paddingState =[] //用来保存数据的\r\n+class updater {\r\n+    constructor(classInstance) {\r\n+        this.classInstance = classInstance //保存类的实例以便获取vNode\r\n+        this.paddingState = [] //用来保存数据的\r\n     }\r\n     //添加数据\r\n-    addState(partialState){\r\n+    addState(partialState) {\r\n         this.paddingState.push(partialState)\r\n         //更新数据\r\n         this.emitUpdate()\r\n     }\r\n     //更新数据\r\n-    emitUpdate(){\r\n+    emitUpdate() {\r\n         //更新组件\r\n         this.updateComponent()\r\n     }\r\n     //更新组件\r\n-    updateComponent(){\r\n-        \r\n+    updateComponent() {\r\n+        //获取数据然后跟新组件\r\n+        let { paddingState , classInstance } =this\r\n+        if(paddingState.length > 0){\r\n+            shouldUpdate(this.classInstance,this.getState())\r\n+        }\r\n     }\r\n+        //获取到最新的数据\r\n+        getState(){\r\n+\r\n+        }\r\n+\r\n }\r\n+\r\n+function shouldUpdate() {\r\n+    \r\n+}\r\n class Component {\r\n-    static isClassComponent = true    //静态属性，表示这个是类式组件\r\n-    \r\n-    constructor(props){\r\n+    static isClassComponent = true //静态属性，表示这个是类式组件\r\n+\r\n+    constructor(props) {\r\n         this.props = props\r\n         this.state = {}\r\n         //创建一个跟新器\r\n-        this.updater =new this.updater(this)\r\n+        this.updater = new this.updater(this)\r\n     }\r\n-    setState(partialState){\r\n+    setState(partialState) {\r\n         updater.addState(partialState)\r\n     }\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1667392715592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     updateComponent() {\r\n         //获取数据然后跟新组件\r\n         let { paddingState , classInstance } =this\r\n         if(paddingState.length > 0){\r\n-            shouldUpdate(this.classInstance,this.getState())\r\n+            shouldUpdate(classInstance,this.getState())\r\n         }\r\n     }\r\n         //获取到最新的数据\r\n         getState(){\r\n"
+                },
+                {
+                    "date": 1667392894007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:38:17\r\n+ * @LastEditTime: 2022-11-02 20:41:33\r\n  */\r\n \r\n // 更新器\r\n class updater {\r\n@@ -33,8 +33,10 @@\n         }\r\n     }\r\n         //获取到最新的数据\r\n         getState(){\r\n+            let { paddingState , classInstance } =this //classInstance实例\r\n+            let { state } = classInstance //获取到旧的数据\r\n \r\n         }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1667393072264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:41:33\r\n+ * @LastEditTime: 2022-11-02 20:44:31\r\n  */\r\n \r\n // 更新器\r\n class updater {\r\n@@ -35,8 +35,11 @@\n         //获取到最新的数据\r\n         getState(){\r\n             let { paddingState , classInstance } =this //classInstance实例\r\n             let { state } = classInstance //获取到旧的数据\r\n+            paddingState.forEach(nestState=>{\r\n+                state ={ ...state, nestState}\r\n+            })\r\n \r\n         }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1667393111977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n         getState(){\r\n             let { paddingState , classInstance } =this //classInstance实例\r\n             let { state } = classInstance //获取到旧的数据\r\n             paddingState.forEach(nestState=>{\r\n-                state ={ ...state, nestState}\r\n+                state ={ ...state, nestState} //获取到最新的数据\r\n             })\r\n \r\n         }\r\n \r\n"
+                },
+                {
+                    "date": 1667393232955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:44:31\r\n+ * @LastEditTime: 2022-11-02 20:47:12\r\n  */\r\n \r\n // 更新器\r\n class updater {\r\n@@ -38,9 +38,11 @@\n             let { state } = classInstance //获取到旧的数据\r\n             paddingState.forEach(nestState=>{\r\n                 state ={ ...state, nestState} //获取到最新的数据\r\n             })\r\n-\r\n+            //情况数据和返回最新state\r\n+            paddingState.length =0\r\n+            return state\r\n         }\r\n \r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1667393239282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n             let { state } = classInstance //获取到旧的数据\r\n             paddingState.forEach(nestState=>{\r\n                 state ={ ...state, nestState} //获取到最新的数据\r\n             })\r\n-            //情况数据和返回最新state\r\n+            //清空数据和返回最新state\r\n             paddingState.length =0\r\n             return state\r\n         }\r\n \r\n"
+                },
+                {
+                    "date": 1667393311326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:47:12\r\n+ * @LastEditTime: 2022-11-02 20:48:30\r\n  */\r\n \r\n // 更新器\r\n class updater {\r\n@@ -45,8 +45,9 @@\n         }\r\n \r\n }\r\n \r\n+//实现react组件更新\r\n function shouldUpdate() {\r\n     \r\n }\r\n class Component {\r\n"
+                },
+                {
+                    "date": 1667393341086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n  * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 20:48:30\r\n  */\r\n \r\n-// 更新器\r\n+// 更新器获取到最新的数据\r\n class updater {\r\n     constructor(classInstance) {\r\n         this.classInstance = classInstance //保存类的实例以便获取vNode\r\n         this.paddingState = [] //用来保存数据的\r\n"
+                },
+                {
+                    "date": 1667393372588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:48:30\r\n+ * @LastEditTime: 2022-11-02 20:49:32\r\n  */\r\n \r\n // 更新器获取到最新的数据\r\n class updater {\r\n@@ -35,10 +35,10 @@\n         //获取到最新的数据\r\n         getState(){\r\n             let { paddingState , classInstance } =this //classInstance实例\r\n             let { state } = classInstance //获取到旧的数据\r\n-            paddingState.forEach(nestState=>{\r\n-                state ={ ...state, nestState} //获取到最新的数据\r\n+            paddingState.forEach(nextState=>{\r\n+                state ={ ...state, nextState} //获取到最新的数据\r\n             })\r\n             //清空数据和返回最新state\r\n             paddingState.length =0\r\n             return state\r\n"
+                },
+                {
+                    "date": 1667393443997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:49:32\r\n+ * @LastEditTime: 2022-11-02 20:50:43\r\n  */\r\n \r\n // 更新器获取到最新的数据\r\n class updater {\r\n@@ -31,9 +31,9 @@\n         if(paddingState.length > 0){\r\n             shouldUpdate(classInstance,this.getState())\r\n         }\r\n     }\r\n-        //获取到最新的数据\r\n+        //获取到最新的状态\r\n         getState(){\r\n             let { paddingState , classInstance } =this //classInstance实例\r\n             let { state } = classInstance //获取到旧的数据\r\n             paddingState.forEach(nextState=>{\r\n@@ -46,9 +46,9 @@\n \r\n }\r\n \r\n //实现react组件更新\r\n-function shouldUpdate() {\r\n+function shouldUpdate( classInstance, nextState) {\r\n     \r\n }\r\n class Component {\r\n     static isClassComponent = true //静态属性，表示这个是类式组件\r\n"
+                },
+                {
+                    "date": 1667395473519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,12 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 20:50:43\r\n+ * @LastEditTime: 2022-11-02 21:24:33\r\n  */\r\n \r\n+import {twoVNode }from \"./react-dom\"\r\n // 更新器获取到最新的数据\r\n class updater {\r\n     constructor(classInstance) {\r\n         this.classInstance = classInstance //保存类的实例以便获取vNode\r\n@@ -45,11 +46,20 @@\n         }\r\n \r\n }\r\n \r\n-//实现react组件更新\r\n+/**\r\n+ *  实现react组件更新\r\n+ *  原理就是:跟新的时候获取最新的状态，在把这个状态变成vNode（render方法可以实现）再把这个vNode变成真实dom,再用这个真实dom替换掉以前的真实dom\r\n+ */\r\n+\r\n function shouldUpdate( classInstance, nextState) {\r\n-    \r\n+    classInstance.state =nextState  //拿到最新数据\r\n+    //实现组件更新\r\n+    classInstance.forceUpdate()\r\n+\r\n+\r\n+\r\n }\r\n class Component {\r\n     static isClassComponent = true //静态属性，表示这个是类式组件\r\n \r\n@@ -61,7 +71,8 @@\n     }\r\n     setState(partialState) {\r\n         updater.addState(partialState)\r\n     }\r\n+    forceUpdate()\r\n }\r\n \r\n export default Component\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667395564807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 21:24:33\r\n+ * @LastEditTime: 2022-11-02 21:26:04\r\n  */\r\n \r\n import {twoVNode }from \"./react-dom\"\r\n // 更新器获取到最新的数据\r\n@@ -71,8 +71,9 @@\n     }\r\n     setState(partialState) {\r\n         updater.addState(partialState)\r\n     }\r\n+    //实现组件更新\r\n     forceUpdate()\r\n }\r\n \r\n export default Component\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667396705452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 21:26:04\r\n+ * @LastEditTime: 2022-11-02 21:45:05\r\n  */\r\n \r\n import {twoVNode }from \"./react-dom\"\r\n // 更新器获取到最新的数据\r\n@@ -72,8 +72,13 @@\n     setState(partialState) {\r\n         updater.addState(partialState)\r\n     }\r\n     //实现组件更新\r\n-    forceUpdate()\r\n+    forceUpdate(){\r\n+        let newVNode = this.render()\r\n+        let oldVNode =  //初始化有旧的vNode\r\n+\r\n+        twoVNode() //需要3个参数 1.旧的真实元素 2.旧的vNode  3.新的vNode\r\n+    }\r\n }\r\n \r\n export default Component\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1667362857209,
