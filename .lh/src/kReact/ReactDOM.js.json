@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/kReact/ReactDOM.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1667334862332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667334938894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2022-11-01 16:28:24\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2022-11-02 04:35:38\n+ */\n \n function render(vNode, container) {\n   console.log(\"render\", vNode);\n   //vNode-> node\n"
+                },
+                {
+                    "date": 1667335205260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-11-01 16:28:24\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:35:38\n+ * @LastEditTime: 2022-11-02 04:40:05\n  */\n \n function render(vNode, container) {\n   console.log(\"render\", vNode);\n@@ -45,9 +45,11 @@\n   const { type, props } = vNode;\n   const node = document.createElement(type);\n \n   const { children, ...rest } = props;\n-  children.map(item => {\n+  children.array.forEach(element => {\n+    2\n+  });(item => {\n     if (Array.isArray(item)) {\n       item.map(c => {\n         mount(c, node);\n       });\n"
+                },
+                {
+                    "date": 1667335217641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n   const { type, props } = vNode;\n   const node = document.createElement(type);\n \n   const { children, ...rest } = props;\n-  children.array.forEach(element => {\n+  children.forEach(element => {\n     2\n   });(item => {\n     if (Array.isArray(item)) {\n       item.map(c => {\n"
+                },
+                {
+                    "date": 1667335236872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-11-01 16:28:24\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:40:05\n+ * @LastEditTime: 2022-11-02 04:35:38\n  */\n \n function render(vNode, container) {\n   console.log(\"render\", vNode);\n@@ -45,9 +45,9 @@\n   const { type, props } = vNode;\n   const node = document.createElement(type);\n \n   const { children, ...rest } = props;\n-  children.forEach(element => {\n+  children.array.forEach(element => {\n     2\n   });(item => {\n     if (Array.isArray(item)) {\n       item.map(c => {\n"
+                }
+            ],
+            "date": 1667334862332,
+            "name": "Commit-0",
+            "content": "\nfunction render(vNode, container) {\n  console.log(\"render\", vNode);\n  //vNode-> node\n  mount(vNode, container);\n  // container.appendChild(node)\n}\n// vNode-> node\nfunction mount(vNode, container) {\n  const { vType } = vNode;\n  if (!vType) {\n    mountTextNode(vNode, container); //处理文本节点\n  }\n  if (vType === 1) {\n    mountHtml(vNode, container); //处理原生标签\n  }\n\n  if (vType === 3) {\n    //处理函数组件\n    mountFunc(vNode, container);\n  }\n\n  if (vType === 2) {\n    //处理class组件\n    mountClass(vNode, container);\n  }\n}\n\n//处理文本节点\nfunction mountTextNode(vNode, container) {\n  const node = document.createTextNode(vNode);\n  container.appendChild(node);\n}\n\n//处理原生标签\nfunction mountHtml(vNode, container) {\n  const { type, props } = vNode;\n  const node = document.createElement(type);\n\n  const { children, ...rest } = props;\n  children.map(item => {\n    if (Array.isArray(item)) {\n      item.map(c => {\n        mount(c, node);\n      });\n    } else {\n      mount(item, node);\n    }\n  });\n\n  Object.keys(rest).map(item => {\n    if (item === \"className\") {\n      node.setAttribute(\"class\", rest[item]);\n    }\n    if (item.slice(0, 2) === \"on\") {\n      node.addEventListener(\"click\", rest[item]);\n    }\n  });\n\n  container.appendChild(node);\n}\n\nfunction mountFunc(vNode, container) {\n  const { type, props } = vNode;\n  const node = new type(props);\n  mount(node, container);\n}\n\nfunction mountClass(vNode, container) {\n  const { type, props } = vNode;\n  const cmp = new type(props);\n  const node = cmp.render();\n  mount(node, container);\n}\n\nexport default {\n  render,\n};\n"
+        }
+    ]
+}

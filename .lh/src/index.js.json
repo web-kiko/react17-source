@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 25,
             "patches": [
                 {
                     "date": 1667022657495,
@@ -72,6 +72,42 @@
                 {
                     "date": 1667033222333,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,4 @@\n-/*\n- * @Descripttion: \n- * @version: \n- * @Author: kiko\n- * @Date: 2022-10-26 16:54:33\n- * @LastEditors: kiko\n- * @LastEditTime: 2022-10-29 16:42:12\n- */\n import React from 'react';\n import ReactDOM from 'react-dom';\n \n //let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n"
+                },
+                {
+                    "date": 1667334866490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,41 @@\n-import React from 'react';\n-import ReactDOM from 'react-dom';\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2022-10-26 16:54:33\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2022-11-02 04:34:26\n+ */\n+import React from './kReact/index';\n+import ReactDOM from './kReact/ReactDOM';\n \n-//let element1 =<h1 className='title' style={{color:'red'}}>hello react </h1>\n+class MyClassCmp extends React.Component {\n \n-//jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n-let element2 =React.createElement(\"h1\", {\n\\ No newline at end of file\n-  className: \"title\",\n-  style: {\n-    color: 'red'\n+  constructor(props) {\n+    super(props);\n   }\n-}, \"hello react \");\n-console.log(element2);\n-//挂在\n-ReactDOM.render(\n-  // element1,\n-  element2,\n-  document.getElementById(\"root\"));\n+\n+  render() {\n+    return (\n+    <div className=\"class_2\" >MyClassCmp表示:{this.props.name}</div>\n+    );\n+  }\n+  \n+}\n+\n+function MyFuncCmp(props) {\n+  return <div className=\"class_1\" >MyFuncCmp表示:{props.name}</div>;\n+}\n+\n+\n+let jsx = (\n+  <div>\n+    <h1>你好</h1>\n+    <div className=\"class_0\">前端小伙子</div>\n+    <MyFuncCmp name=\"真帅\" />\n+    <MyClassCmp name=\"还有钱\" />\n+  </div>\n+);\n+\n+\n+ReactDOM.render(jsx, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667335446868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,39 +3,25 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:34:26\n+ * @LastEditTime: 2022-11-02 04:44:06\n  */\n-import React from './kReact/index';\n-import ReactDOM from './kReact/ReactDOM';\n+import React from './kReact';\n+import ReactDOM from './kReact-dom';\n \n-class MyClassCmp extends React.Component {\n+// let element1 =<h1 className='title' style={{color:'red'}} key =\"1\">hello react </h1>\n \n-  constructor(props) {\n-    super(props);\n+//jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n+let element2 =React.createElement(\"h1\", {\n+  className: \"title\",\n+  style: {\n+    color: 'red'\n   }\n-\n-  render() {\n-    return (\n-    <div className=\"class_2\" >MyClassCmp表示:{this.props.name}</div>\n-    );\n-  }\n-  \n-}\n-\n-function MyFuncCmp(props) {\n-  return <div className=\"class_1\" >MyFuncCmp表示:{props.name}</div>;\n-}\n-\n-\n-let jsx = (\n-  <div>\n\\ No newline at end of file\n-    <h1>你好</h1>\n-    <div className=\"class_0\">前端小伙子</div>\n-    <MyFuncCmp name=\"真帅\" />\n-    <MyClassCmp name=\"还有钱\" />\n-  </div>\n-);\n-\n-\n-ReactDOM.render(jsx, document.getElementById(\"root\"));\n+},8888,\n+React.createElement('span',{style:{color:'red'}},5555));\n+console.log(element2);\n+//挂在\n+ReactDOM.render(\n+  // element1,\n+  element2,\n+  document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667335719896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,25 +3,39 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:44:06\n+ * @LastEditTime: 2022-11-02 04:48:39\n  */\n-import React from './kReact';\n-import ReactDOM from './kReact-dom';\n+import React from \"./wzReact/\";\n+import ReactDOM from \"./wzReact/ReactDOM\";\n \n-// let element1 =<h1 className='title' style={{color:'red'}} key =\"1\">hello react </h1>\n+class MyClassCmp extends React.Component {\n \n-//jsx通过babel转化成React.createElement的方法而他的返回值就是VNode\n-let element2 =React.createElement(\"h1\", {\n-  className: \"title\",\n-  style: {\n-    color: 'red'\n+  constructor(props) {\n+    super(props);\n   }\n-},8888,\n-React.createElement('span',{style:{color:'red'}},5555));\n\\ No newline at end of file\n-console.log(element2);\n-//挂在\n-ReactDOM.render(\n-  // element1,\n-  element2,\n-  document.getElementById(\"root\"));\n+\n+  render() {\n+    return (\n+    <div className=\"class_2\" >MyClassCmp表示:{this.props.name}</div>\n+    );\n+  }\n+  \n+}\n+\n+function MyFuncCmp(props) {\n+  return <div className=\"class_1\" >MyFuncCmp表示:{props.name}</div>;\n+}\n+\n+\n+let jsx = (\n+  <div>\n+    <h1>你好</h1>\n+    <div className=\"class_0\">前端小伙子</div>\n+    <MyFuncCmp name=\"真帅\" />\n+    <MyClassCmp name=\"还有钱\" />\n+  </div>\n+);\n+\n+\n+ReactDOM.render(jsx, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667363222618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:48:39\n+ * @LastEditTime: 2022-11-02 12:27:02\n  */\n-import React from \"./wzReact/\";\n-import ReactDOM from \"./wzReact/ReactDOM\";\n+import React from \"./source/react\";\n+import ReactDOM from \"./source/react-dom\";\n \n class MyClassCmp extends React.Component {\n \n   constructor(props) {\n"
+                },
+                {
+                    "date": 1667363762326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,18 +3,15 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 12:27:02\n+ * @LastEditTime: 2022-11-02 12:36:02\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n class MyClassCmp extends React.Component {\n \n-  constructor(props) {\n-    super(props);\n-  }\n \n   render() {\n     return (\n     <div className=\"class_2\" >MyClassCmp表示:{this.props.name}</div>\n"
+                },
+                {
+                    "date": 1667363836318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 12:36:02\n+ * @LastEditTime: 2022-11-02 12:37:16\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n@@ -13,16 +13,16 @@\n \n \n   render() {\n     return (\n-    <div className=\"class_2\" >MyClassCmp表示:{this.props.name}</div>\n+    <div className=\"class_2\" >类组件表示:{this.props.name}</div>\n     );\n   }\n   \n }\n \n function MyFuncCmp(props) {\n-  return <div className=\"class_1\" >MyFuncCmp表示:{props.name}</div>;\n+  return <div className=\"class_1\" >函数组件表示:{props.name}</div>;\n }\n \n \n let jsx = (\n"
+                },
+                {
+                    "date": 1667363906141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 12:37:16\n+ * @LastEditTime: 2022-11-02 12:38:26\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n@@ -32,7 +32,7 @@\n     <MyFuncCmp name=\"真帅\" />\n     <MyClassCmp name=\"还有钱\" />\n   </div>\n );\n+console.log(jsx);\n \n-\n ReactDOM.render(jsx, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667364455235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 12:38:26\n+ * @LastEditTime: 2022-11-02 12:47:35\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n@@ -26,10 +26,10 @@\n \n \n let jsx = (\n   <div>\n-    <h1>你好</h1>\n-    <div className=\"class_0\">前端小伙子</div>\n+    <h1 >你好</h1>\n+    <div className=\"class_0\" style={{color:\"red\"}}>前端小伙子</div>\n     <MyFuncCmp name=\"真帅\" />\n     <MyClassCmp name=\"还有钱\" />\n   </div>\n );\n"
+                },
+                {
+                    "date": 1667364475429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \n let jsx = (\n   <div>\n     <h1 >你好</h1>\n-    <div className=\"class_0\" style={{color:\"red\"}}>前端小伙子</div>\n+    <div className=\"class_0\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n     <MyFuncCmp name=\"真帅\" />\n     <MyClassCmp name=\"还有钱\" />\n   </div>\n );\n"
                 }
             ],
             "date": 1667022657495,

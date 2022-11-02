@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/source/Component.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1667362857209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667363240972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\r\n+ * @Descripttion: \r\n+ * @version: \r\n+ * @Author: kiko\r\n+ * @Date: 2022-11-02 12:19:27\r\n+ * @LastEditors: kiko\r\n+ * @LastEditTime: 2022-11-02 12:20:57\r\n+ */\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n     \r\n     constructor(props){\r\n"
+                },
+                {
+                    "date": 1667363253987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,16 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n+ * @LastEditTime: 2022-11-02 12:27:33\r\n+ */\r\n+/*\r\n+ * @Descripttion: \r\n+ * @version: \r\n+ * @Author: kiko\r\n+ * @Date: 2022-11-02 12:19:27\r\n+ * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 12:20:57\r\n  */\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n"
+                },
+                {
+                    "date": 1667363268730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,11 @@\n+\r\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 12:27:33\r\n- */\r\n-/*\r\n- * @Descripttion: \r\n- * @version: \r\n- * @Author: kiko\r\n- * @Date: 2022-11-02 12:19:27\r\n- * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 12:20:57\r\n  */\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n"
+                }
+            ],
+            "date": 1667362857209,
+            "name": "Commit-0",
+            "content": "class Component {\r\n    static isClassComponent = true    //静态属性，表示这个是类式组件\r\n    \r\n    constructor(props){\r\n        this.props = props\r\n    }\r\n}\r\n\r\nexport default Component"
+        }
+    ]
+}

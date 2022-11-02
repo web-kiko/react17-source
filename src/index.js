@@ -4,21 +4,35 @@
  * @Author: kiko
  * @Date: 2022-10-26 16:54:33
  * @LastEditors: kiko
- * @LastEditTime: 2022-11-01 21:36:47
+ * @LastEditTime: 2022-11-02 12:47:35
  */
+import React from "./source/react";
+import ReactDOM from "./source/react-dom";
 
-//引入自己的react和react-dom
-import React from "./react"
-import ReactDOM from "./react-dom"
+class MyClassCmp extends React.Component {
 
 
-//jsx语法
-let element1 =React.createElement("h1", {
-  className: "title",
-  style: {
-    color: "red"
-  },
-  key: "1"
-}, "hello, react", React.createElement("span", {style:{color:'pink'}}, "this is span"));
+  render() {
+    return (
+    <div className="class_2" >类组件表示:{this.props.name}</div>
+    );
+  }
+  
+}
 
-ReactDOM.render(element1, document.getElementById("root"))
+function MyFuncCmp(props) {
+  return <div className="class_1" >函数组件表示:{props.name}</div>;
+}
+
+
+let jsx = (
+  <div>
+    <h1 >你好</h1>
+    <div className="class_0" style={{color:"red"}} key="1">前端小伙子</div>
+    <MyFuncCmp name="真帅" />
+    <MyClassCmp name="还有钱" />
+  </div>
+);
+console.log(jsx);
+
+ReactDOM.render(jsx, document.getElementById("root"));

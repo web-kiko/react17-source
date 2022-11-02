@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/source/react-dom.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1667363253637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667363638011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n function render(VDOM, container){\r\n     let DOM = createDOM(VDOM)\r\n+    console.log(DOM);\r\n     container.appendChild(DOM)\r\n }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1667364052173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n+\r\n+//初始化\r\n function render(VDOM, container){\r\n     let DOM = createDOM(VDOM)\r\n     console.log(DOM);\r\n+    //根据虚拟DOM生成真实DOM\r\n     container.appendChild(DOM)\r\n }\r\n \r\n \r\n@@ -14,9 +17,9 @@\n     let {type, props} = VDOM\r\n \r\n     let DOM =null\r\n     \r\n-    if(typeof type === \"function\"){          //新增部分\r\n+    if(typeof type === \"function\"){          \r\n         if(type.isClassComponent){          //判断是类式组件还是函数式组件，分别处理\r\n             return handleClassComponent(VDOM)\r\n         }\r\n         return handleFunctionComponent(VDOM)\r\n"
+                }
+            ],
+            "date": 1667363253637,
+            "name": "Commit-0",
+            "content": "function render(VDOM, container){\r\n    let DOM = createDOM(VDOM)\r\n    container.appendChild(DOM)\r\n}\r\n\r\n\r\nfunction createDOM(VDOM){\r\n\r\n    if(Object(VDOM) !== VDOM){\r\n        return document.createTextNode(VDOM)\r\n    }\r\n\r\n    let {type, props} = VDOM\r\n\r\n    let DOM =null\r\n    \r\n    if(typeof type === \"function\"){          //新增部分\r\n        if(type.isClassComponent){          //判断是类式组件还是函数式组件，分别处理\r\n            return handleClassComponent(VDOM)\r\n        }\r\n        return handleFunctionComponent(VDOM)\r\n    }else{\r\n        DOM = document.createElement(type)\r\n    } \r\n    \r\n    updateProps(DOM, null, props)\r\n\r\n    let {children} = props\r\n    if(children){\r\n        handleChildren(DOM, children)\r\n    }\r\n\r\n    return DOM\r\n}\r\n\r\nfunction handleClassComponent(VDOM){     //对于类式组件\r\n    let {type, props} = VDOM\r\n    let classInstance = new type(props)\r\n    let realVDOM = classInstance.render()    //render()的返回值才是JSX，也就是虚拟DOM\r\n    return createDOM(realVDOM)\r\n}\r\n\r\n\r\nfunction handleFunctionComponent(VDOM){\r\n    let {type, props} = VDOM\r\n    let realVDOM = type(props)       //函数执行的返回值就是虚拟DOM\r\n    return createDOM(realVDOM)\r\n}\r\n\r\n\r\nfunction updateProps(DOM, oldProps, newProps){     //props:{children, className, style, onXXX}\r\n    if(newProps){\r\n        for(let key in newProps){\r\n            if(key === \"children\"){\r\n                continue\r\n            }else if(key === \"style\"){\r\n                let styleObject = newProps[key]\r\n                for(let item in styleObject){\r\n                    DOM.style[item] = styleObject[item]\r\n                }\r\n    \r\n            }else if(key.startsWith(\"on\")){\r\n                DOM[key.toLocaleLowerCase()] = newProps[key]\r\n            }else{\r\n                DOM[key] = newProps[key]\r\n            }\r\n        }\r\n    }\r\n    \r\n\r\n    if(oldProps){\r\n        for(let key in oldProps){\r\n            if(!newProps[key]) DOM[key] = null\r\n        }\r\n    }\r\n}\r\n\r\nfunction handleChildren(DOM, children){\r\n    if(children instanceof Array){\r\n        children.forEach(child => render(child, DOM) )\r\n    }else{\r\n        render(children, DOM)\r\n    }\r\n}\r\n\r\n\r\nconst ReactDOM = {\r\n    render\r\n}\r\n\r\nexport default ReactDOM"
+        }
+    ]
+}

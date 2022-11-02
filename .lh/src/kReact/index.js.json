@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/kReact/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1667334869662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667334964902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2022-11-01 20:28:24\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2022-11-02 04:36:04\n+ */\n //初始化\n function createElement(type, props, ...children) {\n   console.log(\"createElement\", arguments);\n   props.children = children;\n"
+                }
+            ],
+            "date": 1667334869662,
+            "name": "Commit-0",
+            "content": "//初始化\nfunction createElement(type, props, ...children) {\n  console.log(\"createElement\", arguments);\n  props.children = children;\n  let vType;\n  \n  if (typeof type === \"string\") {\n    vType = 1;\n  }\n  if (typeof type === \"function\") {\n    vType = type.isReactComponent ? 2 : 3;\n  }\n  return {\n    vType,\n    type,\n    props,\n  };\n}\n\nclass Component {\n  static isReactComponent = true;\n  constructor(props) {\n    this.props = props;\n    this.state = {};\n  }\n  setState = () => {};\n}\n\nexport default {\n  Component,\n  createElement,\n};\n"
+        }
+    ]
+}

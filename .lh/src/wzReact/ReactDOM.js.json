@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/wzReact/ReactDOM.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1667336035720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667336076774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,12 @@\n+/*\n+ * @Descripttion: \n+ * @version: \n+ * @Author: kiko\n+ * @Date: 2022-11-02 04:45:15\n+ * @LastEditors: kiko\n+ * @LastEditTime: 2022-11-02 04:53:56\n+ */\n function render(vnode, container) {\n   console.log(\"render\", vnode);\n   //vnode-> node\n   mount(vnode, container);\n@@ -38,17 +46,17 @@\n \n   const { children, ...rest } = props;\n   children.forEach(item => {\n     if (Array.isArray(item)) {\n-      item.map(c => {\n+      item.forEach(c => {\n         mount(c, node);\n       });\n     } else {\n       mount(item, node);\n     }\n   });\n \n-  Object.keys(rest).map(item => {\n+  Object.keys(rest).forEach(item => {\n     if (item === \"className\") {\n       node.setAttribute(\"class\", rest[item]);\n     }\n     if (item.slice(0, 2) === \"on\") {\n"
+                },
+                {
+                    "date": 1667336212211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-11-02 04:45:15\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:53:56\n+ * @LastEditTime: 2022-11-02 04:56:52\n  */\n function render(vnode, container) {\n   console.log(\"render\", vnode);\n   //vnode-> node\n@@ -79,7 +79,8 @@\n   const node = cmp.render();\n   mount(node, container);\n }\n \n-export default {\n-  render,\n-};\n+const ReactDOM = {\n+  render\n+}\n+export default ReactDOM\n"
+                },
+                {
+                    "date": 1667336580363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-11-02 04:45:15\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 04:56:52\n+ * @LastEditTime: 2022-11-02 05:03:00\n  */\n function render(vnode, container) {\n   console.log(\"render\", vnode);\n   //vnode-> node\n@@ -79,8 +79,8 @@\n   const node = cmp.render();\n   mount(node, container);\n }\n \n-const ReactDOM = {\n+const render = {\n   render\n }\n-export default ReactDOM\n+export default render\n"
+                },
+                {
+                    "date": 1667336661298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-11-02 04:45:15\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 05:03:00\n+ * @LastEditTime: 2022-11-02 05:04:21\n  */\n function render(vnode, container) {\n   console.log(\"render\", vnode);\n   //vnode-> node\n@@ -79,8 +79,7 @@\n   const node = cmp.render();\n   mount(node, container);\n }\n \n-const render = {\n-  render\n-}\n-export default render\n+export default {\n+  render,\n+};\n"
+                }
+            ],
+            "date": 1667336035720,
+            "name": "Commit-0",
+            "content": "function render(vnode, container) {\n  console.log(\"render\", vnode);\n  //vnode-> node\n  mount(vnode, container);\n  // container.appendChild(node)\n}\n// vnode-> node\nfunction mount(vnode, container) {\n  const { vtype } = vnode;\n  if (!vtype) {\n    mountTextNode(vnode, container); //处理文本节点\n  }\n  if (vtype === 1) {\n    mountHtml(vnode, container); //处理原生标签\n  }\n\n  if (vtype === 3) {\n    //处理函数组件\n    mountFunc(vnode, container);\n  }\n\n  if (vtype === 2) {\n    //处理class组件\n    mountClass(vnode, container);\n  }\n}\n\n//处理文本节点\nfunction mountTextNode(vnode, container) {\n  const node = document.createTextNode(vnode);\n  container.appendChild(node);\n}\n\n//处理原生标签\nfunction mountHtml(vnode, container) {\n  const { type, props } = vnode;\n  const node = document.createElement(type);\n\n  const { children, ...rest } = props;\n  children.forEach(item => {\n    if (Array.isArray(item)) {\n      item.map(c => {\n        mount(c, node);\n      });\n    } else {\n      mount(item, node);\n    }\n  });\n\n  Object.keys(rest).map(item => {\n    if (item === \"className\") {\n      node.setAttribute(\"class\", rest[item]);\n    }\n    if (item.slice(0, 2) === \"on\") {\n      node.addEventListener(\"click\", rest[item]);\n    }\n  });\n\n  container.appendChild(node);\n}\n\nfunction mountFunc(vnode, container) {\n  const { type, props } = vnode;\n  const node = new type(props);\n  mount(node, container);\n}\n\nfunction mountClass(vnode, container) {\n  const { type, props } = vnode;\n  const cmp = new type(props);\n  const node = cmp.render();\n  mount(node, container);\n}\n\nexport default {\n  render,\n};\n"
+        }
+    ]
+}

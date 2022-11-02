@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/wzReact/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1667336250774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1667336250774,
+            "name": "Commit-0",
+            "content": "function createElement(type, props, ...children) {\n  console.log(\"createElement\", arguments);\n  props.children = children;\n  let vtype;\n  if (typeof type === \"string\") {\n    vtype = 1;\n  }\n  if (typeof type === \"function\") {\n    vtype = type.isReactComponent ? 2 : 3;\n  }\n  return {\n    vtype,\n    type,\n    props,\n  };\n}\n\nclass Component {\n  static isReactComponent = true;\n  constructor(props) {\n    this.props = props;\n    this.state = {};\n  }\n  setState = () => {};\n}\n\n\nconst React = {\n  Component,\n  createElement,\n}\n\nexport default React\n"
+        }
+    ]
+}
