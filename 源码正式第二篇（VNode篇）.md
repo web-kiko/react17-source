@@ -551,7 +551,7 @@ function renderWithHooks(current, workInProgress, Component, props, secondArg, n
 
 不过有点意外的是，我以为我定义的函数组件在判断组件类型时，会走case FunctionComponent分支路线，结果它走的case IndeterminateComponent，也就是模糊定义的组件，不过影响不大，还是符合我们的推测。
 
-好了，到这里，今天属实有点累，关于虚拟dom如何转变成真实dom也介绍完毕了。
+好了，到这里，今天属实有点累， 自己实现了[VNode创建和render实现](https://github.com/web-kiko/react17-source/tree/main/src/source)关于虚拟dom如何转变成真实dom也介绍完毕了。
 
 # 我是如何阅读源码的
 

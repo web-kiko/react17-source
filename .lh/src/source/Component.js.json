@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1667362857209,
@@ -20,6 +20,18 @@
                 {
                     "date": 1667363268730,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,11 @@\n+\r\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 12:27:33\r\n- */\r\n-/*\r\n- * @Descripttion: \r\n- * @version: \r\n- * @Author: kiko\r\n- * @Date: 2022-11-02 12:19:27\r\n- * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 12:20:57\r\n  */\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n"
+                },
+                {
+                    "date": 1667365678750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n- * @Date: 2022-11-02 12:19:27\r\n+ * @Date: 2022-10-29 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-02 12:20:57\r\n+ * @LastEditTime: 2022-11-02 13:07:58\r\n  */\r\n class Component {\r\n     static isClassComponent = true    //静态属性，表示这个是类式组件\r\n     \r\n"
+                },
+                {
+                    "date": 1667365696017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n- * @Date: 2022-10-29 12:19:27\r\n+ * @Date: 2022-11-01 12:19:27\r\n  * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 13:07:58\r\n  */\r\n class Component {\r\n"
+                },
+                {
+                    "date": 1667365714931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n /*\r\n  * @Descripttion: \r\n  * @version: \r\n  * @Author: kiko\r\n- * @Date: 2022-11-01 12:19:27\r\n+ * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n  * @LastEditTime: 2022-11-02 13:07:58\r\n  */\r\n class Component {\r\n"
                 }
             ],
             "date": 1667362857209,
