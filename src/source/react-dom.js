@@ -6,7 +6,7 @@ function render(vNode, container) {
     container.appendChild(newDom)
 }
 
-
+//创建Dom
 function createDOM(vNode) {
     //如果是文本类型的，就直接创建文本节点，也是递归的出口
     if (Object(vNode) !== vNode) {
@@ -19,13 +19,13 @@ function createDOM(vNode) {
 
     if (typeof type === "function") {
         if (type.isClassComponent) {       //判断是类式组件还是函数式组件，分别处理
-            return handleClassComponent(vNode)
+            return mountClassComponent(vNode)
         }
-        return handleFunctionComponent(vNode)
+        return mountFunctionComponent(vNode)
     } else {
         DOM = document.createElement(type)
     }
-
+    // 处理props
     if (props) {
         //更新
         updateProps(DOM, {}, props) //真实dom和旧属性，新属性
@@ -39,21 +39,22 @@ function createDOM(vNode) {
     return DOM
 }
 
-function handleClassComponent(vNode) {     //对于类式组件
+//处理类组件
+function mountClassComponent(vNode) {
     let { type, props } = vNode
     let classInstance = new type(props)
-    let realvNode = classInstance.render()    //render的返回值才虚拟DOM
-    return createDOM(realvNode)
+    let fvNode = classInstance.render()    //render的返回值才虚拟DOM
+    return createDOM(fvNode)
 }
 
-
-function handleFunctionComponent(vNode) {
+//处理函数组件
+function mountFunctionComponent(vNode) {
     let { type, props } = vNode
-    let realvNode = type(props)       //函数执行的返回值就是虚拟DOM
-    return createDOM(realvNode)
+    let cvNode = type(props)       //函数执行的返回值就是虚拟DOM
+    return createDOM(cvNode)
 }
 
-
+//更新props
 function updateProps(DOM, oldProps, newProps) {  //props:{children, className, style, onXXX}
     if (newProps) {
         for (let key in newProps) {
@@ -81,6 +82,7 @@ function updateProps(DOM, oldProps, newProps) {  //props:{children, className, s
     }
 }
 
+//更新children
 function handleChildren(DOM, children) {
     if (children instanceof Array) {
         children.forEach(child => render(child, DOM))

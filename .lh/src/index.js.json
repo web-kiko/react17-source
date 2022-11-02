@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 30,
+            "activePatchIndex": 38,
             "patches": [
                 {
                     "date": 1667022657495,
@@ -128,6 +128,38 @@
                 {
                     "date": 1667368630418,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,16 +3,14 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 13:43:00\n+ * @LastEditTime: 2022-11-02 13:57:10\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n class MyClassCmp extends React.Component {\n-\n-\n   render() {\n     return (\n       <div className=\"class_2\" >类组件表示:{this.props.name}</div>\n     );\n"
+                },
+                {
+                    "date": 1667378809189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 13:57:10\n+ * @LastEditTime: 2022-11-02 16:46:49\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n@@ -25,9 +25,9 @@\n \n let jsx = (\n   <div>\n     <h1 >你好</h1>\n-    <div className=\"class_0\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n+    <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n     <MyFuncCmp name=\"真帅\" />\n     <MyClassCmp name=\"还有钱\" />\n   </div>\n );\n"
+                },
+                {
+                    "date": 1667378930150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,24 +3,24 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 16:46:49\n+ * @LastEditTime: 2022-11-02 16:48:50\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n class MyClassCmp extends React.Component {\n   render() {\n     return (\n-      <div className=\"class_2\" >类组件表示:{this.props.name}</div>\n+      <div className=\"title1\" >类组件表示:{this.props.name}</div>\n     );\n   }\n \n }\n \n function MyFuncCmp(props) {\n-  return <div className=\"class_1\" >函数组件表示:{props.name}</div>;\n+  return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n \n \n let jsx = (\n"
+                },
+                {
+                    "date": 1667379107745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,33 +3,33 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 16:48:50\n+ * @LastEditTime: 2022-11-02 16:51:47\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n-class MyClassCmp extends React.Component {\n+class mountClassComponent extends React.Component {\n   render() {\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n     );\n   }\n \n }\n \n-function MyFuncCmp(props) {\n+function mountFunctionComponent(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n \n \n let jsx = (\n   <div>\n     <h1 >你好</h1>\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n-    <MyFuncCmp name=\"真帅\" />\n-    <MyClassCmp name=\"还有钱\" />\n+    <mountFunctionComponent name=\"真帅\" />\n+    <mountClassComponent name=\"还有钱\" />\n   </div>\n );\n \n \n"
+                },
+                {
+                    "date": 1667379211672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,33 +3,33 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 16:51:47\n+ * @LastEditTime: 2022-11-02 16:53:31\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n-class mountClassComponent extends React.Component {\n+class MyClassCmp extends React.Component {\n   render() {\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n     );\n   }\n \n }\n \n-function mountFunctionComponent(props) {\n+function MyFuncCmp(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n \n \n let jsx = (\n   <div>\n     <h1 >你好</h1>\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n-    <mountFunctionComponent name=\"真帅\" />\n-    <mountClassComponent name=\"还有钱\" />\n+    <MyFuncCmp name=\"真帅\" />\n+    <MyClassCmp name=\"还有钱\" />\n   </div>\n );\n \n \n"
+                },
+                {
+                    "date": 1667379306212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,23 +3,23 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 16:53:31\n+ * @LastEditTime: 2022-11-02 16:55:05\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n-class MyClassCmp extends React.Component {\n+class MountClassComponent extends React.Component {\n   render() {\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n     );\n   }\n \n }\n \n-function MyFuncCmp(props) {\n+function MountFunctionComponent(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n \n \n@@ -27,9 +27,9 @@\n   <div>\n     <h1 >你好</h1>\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n     <MyFuncCmp name=\"真帅\" />\n-    <MyClassCmp name=\"还有钱\" />\n+    <MountClassComponent  name=\"还有钱\" />\n   </div>\n );\n \n \n"
+                },
+                {
+                    "date": 1667379315866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n let jsx = (\n   <div>\n     <h1 >你好</h1>\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n-    <MyFuncCmp name=\"真帅\" />\n+    <MountFunctionComponent name=\"真帅\" />\n     <MountClassComponent  name=\"还有钱\" />\n   </div>\n );\n \n"
+                },
+                {
+                    "date": 1667380494185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,17 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 16:55:05\n+ * @LastEditTime: 2022-11-02 17:14:53\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n+function MountFunctionComponent(props) {\n+  return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n+}\n+\n class MountClassComponent extends React.Component {\n   render() {\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n@@ -17,13 +21,9 @@\n   }\n \n }\n \n-function MountFunctionComponent(props) {\n-  return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n-}\n \n-\n let jsx = (\n   <div>\n     <h1 >你好</h1>\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n"
+                },
+                {
+                    "date": 1667380609212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 17:14:53\n+ * @LastEditTime: 2022-11-02 17:16:48\n  */\n import React from \"./source/react\";\n import ReactDOM from \"./source/react-dom\";\n \n@@ -41,12 +41,12 @@\n //     color: \"red\"\n //   },\n //   key: \"1\"\n // }, \"前端小伙子\"), \n-//   React.createElement(MyFuncCmp, {\n+//   React.createElement(MountFunctionComponent, {\n //     name: \"真帅\"\n // }), \n-//   React.createElement(MyClassCmp, {\n+//   React.createElement(MountClassComponent, {\n //   name: \"还有钱\"\n // }));\n console.log(jsx);\n \n"
                 }
             ],
             "date": 1667022657495,
