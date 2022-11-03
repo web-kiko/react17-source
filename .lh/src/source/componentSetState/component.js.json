@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/source/componentSetState/component.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1667474400474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667475909291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,30 +4,30 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2022-11-02 12:19:27\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2022-11-03 19:20:00\r\n+ * @LastEditTime: 2022-11-03 19:45:08\r\n  */\r\n class Component {\r\n     static isClassComponent = true //静态属性，表示这个是类式组件\r\n \r\n     constructor(props) {\r\n         this.props = props\r\n         this.state = {}\r\n         //创建一个跟新器每个类都是一个实例都有updater（）更新器\r\n-        this.updater = new updater(this)\r\n+        this.updater = new Updater(this)\r\n     }\r\n     //定义setState\r\n     setState(partialState, callback) {\r\n-        updater.addState(partialState, callback)\r\n+        this.updater.addState(partialState, callback)\r\n     }\r\n     //调用及更新，即使state\r\n     forceUpdate() {\r\n         console.log(\"我应该刷新了\");\r\n     }\r\n }\r\n \r\n-class updater {\r\n+class Updater {\r\n     constructor(classInstance) {\r\n         this.classInstance = classInstance //保存类的实例以便获取vNode\r\n         this.paddingState = [] //保存将要更新的队列\r\n         this.callbacks = [] //保存将要将要执行的回调函数比如setState的第二个参数\r\n"
+                }
+            ],
+            "date": 1667474400474,
+            "name": "Commit-0",
+            "content": "\r\n/*\r\n * @Descripttion: \r\n * @version: \r\n * @Author: kiko\r\n * @Date: 2022-11-02 12:19:27\r\n * @LastEditors: kiko\r\n * @LastEditTime: 2022-11-03 19:20:00\r\n */\r\nclass Component {\r\n    static isClassComponent = true //静态属性，表示这个是类式组件\r\n\r\n    constructor(props) {\r\n        this.props = props\r\n        this.state = {}\r\n        //创建一个跟新器每个类都是一个实例都有updater（）更新器\r\n        this.updater = new updater(this)\r\n    }\r\n    //定义setState\r\n    setState(partialState, callback) {\r\n        updater.addState(partialState, callback)\r\n    }\r\n    //调用及更新，即使state\r\n    forceUpdate() {\r\n        console.log(\"我应该刷新了\");\r\n    }\r\n}\r\n\r\nclass updater {\r\n    constructor(classInstance) {\r\n        this.classInstance = classInstance //保存类的实例以便获取vNode\r\n        this.paddingState = [] //保存将要更新的队列\r\n        this.callbacks = [] //保存将要将要执行的回调函数比如setState的第二个参数\r\n    }\r\n    //添加数据\r\n    addState(partialState, callback) {\r\n        this.paddingState.push(partialState) //将更新的状态放入队列\r\n        if (typeof callback === 'function') {\r\n            this.callbacks.push(callback) //将有回调函数放入队列\r\n        }\r\n        //触发更新\r\n        this.emitUpdate()\r\n    }\r\n    //更新数据\r\n    emitUpdate() {\r\n        //更新组件\r\n        this.updateComponent()\r\n    }\r\n    //更新组件\r\n    updateComponent() {\r\n        let {\r\n            paddingState,\r\n            classInstance\r\n        } = this //获取数据然后跟新组件\r\n        if (paddingState.length > 0) {\r\n            shouldUpdate(classInstance, this.getState()) //有等待的更新则跟新\r\n        }\r\n    }\r\n    //根据老状态和paddingState这个队列来跟新state，就相当于之前reduce\r\n    getState() {\r\n        let {\r\n            paddingState,\r\n            classInstance,\r\n            callbacks\r\n        } = this //classInstance实例\r\n        let {\r\n            state\r\n        } = classInstance //从组件中获取老的state\r\n\r\n        //遍历paddingState返回最新的状态\r\n        const computedState =paddingState.reduce((newState,currentItem)=>{\r\n            if(typeof currentItem ===\"function\"){\r\n                //如果是一个函数\r\n                return {...newState,...currentItem(state)}\r\n            }else{\r\n                return {...newState,...currentItem }\r\n            }\r\n        },state)\r\n        callbacks.forEach(item => {item()}); //回调函数也一并执行\r\n        //清空数据和返回最新state\r\n        this.paddingState.length =[]\r\n        this.callbacks = []\r\n        return computedState\r\n    }\r\n\r\n}\r\nfunction shouldUpdate(classInstance, nextState) {\r\n    classInstance.state = nextState //拿到真正修改实例的state\r\n    //实现组件更新\r\n    classInstance.forceUpdate() //调用实例的updateComponent\r\n\r\n}\r\n\r\nexport default Component\r\n\r\n\r\n"
+        }
+    ]
+}

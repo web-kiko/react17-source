@@ -4,7 +4,7 @@
  * @Author: kiko
  * @Date: 2022-10-26 16:54:33
  * @LastEditors: kiko
- * @LastEditTime: 2022-11-03 14:04:37
+ * @LastEditTime: 2022-11-03 19:23:22
  */
 
 
@@ -35,8 +35,6 @@ let jsx = React.createElement("div", null,
  */
 
 
-
-
 //虚拟dom的创建和render的实现，并对函数组件和类组件进行了简单的处理
 
 /* import React from "./source/vNode/react";
@@ -53,9 +51,7 @@ class MountClassComponent extends React.Component {
       <div className="title1" >类组件表示:{this.props.name}</div>
     );
   }
-
 }
-
 
 let jsx = (
   <div>
@@ -68,10 +64,10 @@ let jsx = (
 
 
 
-//类组件的具体实现和组件更新
+//类组件的具体实现和组件更新setState
 
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "./source/componentSetState/react";
+import ReactDOM from "./source/componentSetState/react-dom";
 
 
 class MountClassComponent extends React.Component {
@@ -115,7 +111,6 @@ let jsx = (
     <MountClassComponent  name="还有钱" />
   </div>
 );
-
 
 console.log(jsx);
 

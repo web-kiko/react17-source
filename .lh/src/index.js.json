@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 53,
+            "activePatchIndex": 55,
             "patches": [
                 {
                     "date": 1667022657495,
@@ -220,6 +220,14 @@
                 {
                     "date": 1667407895748,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,11 +91,11 @@\n     console.log(this.state)\n     this.setState({num:this.state.num+1})\n     console.log(this.state);\n     setTimeout(() => {\n-      this.setState({ number: this.state.num + 1 })\n+      this.setState({ num: this.state.num + 1 })\n       console.log(this.state) //2\n-      this.setState({ number: this.state.num + 1 })\n+      this.setState({ num: this.state.num + 1 })\n       console.log(this.state) //3\n     })\n \n   }\n"
+                },
+                {
+                    "date": 1667473469324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 14:04:37\n+ * @LastEditTime: 2022-11-03 19:04:29\n  */\n \n \n \n@@ -38,9 +38,9 @@\n \n \n //虚拟dom的创建和render的实现，并对函数组件和类组件进行了简单的处理\n \n-/* import React from \"./source/vNode/react\";\n+import React from \"./source/vNode/react\";\n import ReactDOM from \"./source/vNode/react-dom\";\n \n function MountFunctionComponent(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n@@ -63,13 +63,13 @@\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n     <MountFunctionComponent name=\"真帅\" />\n     <MountClassComponent  name=\"还有钱\" />\n   </div>\n-); */\n+);\n \n \n \n-//类组件的具体实现和组件更新\n+/* //类组件的具体实现和组件更新\n \n import React from \"react\";\n import ReactDOM from \"react-dom\";\n \n@@ -115,8 +115,8 @@\n     <MountClassComponent  name=\"还有钱\" />\n   </div>\n );\n \n-\n+ */\n console.log(jsx);\n \n ReactDOM.render(jsx, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667473479868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,12 +52,10 @@\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n     );\n   }\n-\n }\n \n-\n let jsx = (\n   <div>\n     <h1 >你好</h1>\n     <div className=\"title\" style={{color:\"red\"}} key=\"1\">前端小伙子</div>\n"
                 }
             ],
             "date": 1667022657495,
