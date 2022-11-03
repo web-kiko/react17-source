@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 40,
+            "activePatchIndex": 53,
             "patches": [
                 {
                     "date": 1667022657495,
@@ -168,6 +168,58 @@
                 {
                     "date": 1667404096937,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,52 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 22:08:42\n+ * @LastEditTime: 2022-11-02 23:48:16\n  */\n-import React from \"./vNode/react\";\n-import ReactDOM from \"./vNode/react-dom\";\n \n+\n+\n+\n+\n+//jsx的实现\n+\n+/* import React from \"react\";\n+import ReactDOM from \"react-dom\";\n+\n+let jsx = React.createElement(\"div\", null,\n+  React.createElement(\"h1\", null, \"你好\"),\n+  React.createElement(\"div\", {\n+    className: \"class_0\",\n+    style: {\n+    color: \"red\"\n+  },\n+  key: \"1\"\n+}, \"前端小伙子\"), \n+  React.createElement(MountFunctionComponent, {\n+    name: \"真帅\"\n+}), \n+  React.createElement(MountClassComponent, {\n+  name: \"还有钱\"\n+}));\n+\n+ */\n+\n+\n+\n+\n+//虚拟dom的创建和render的实现，并对函数组件和类组件进行了简单的处理\n+\n+/* \n+import React from \"./source/vNode/react\";\n+import ReactDOM from \"./source/vNode/react-dom\";\n+\n function MountFunctionComponent(props) {\n   return <div className=\"title2\" >函数组件表示:{props.name}</div>;\n }\n \n+\n class MountClassComponent extends React.Component {\n   render() {\n     return (\n       <div className=\"title1\" >类组件表示:{this.props.name}</div>\n@@ -30,24 +65,33 @@\n     <MountFunctionComponent name=\"真帅\" />\n     <MountClassComponent  name=\"还有钱\" />\n   </div>\n );\n+ */\n \n \n-// let jsx = React.createElement(\"div\", null,\n-//   React.createElement(\"h1\", null, \"你好\"),\n-//   React.createElement(\"div\", {\n-//     className: \"class_0\",\n-//     style: {\n-//     color: \"red\"\n-//   },\n-//   key: \"1\"\n-// }, \"前端小伙子\"), \n-//   React.createElement(MountFunctionComponent, {\n-//     name: \"真帅\"\n-// }), \n-//   React.createElement(MountClassComponent, {\n-//   name: \"还有钱\"\n-// }));\n+\n+\n+//类组件的具体实现和组件更新\n+\n+import React from \"react\";\n+import ReactDOM from \"react-dom\";\n+\n+class MountClassComponent extends React.Component {\n+  render() {\n+    return (\n+      <div className=\"title1\" >类组件表示:{this.props.name}</div>\n+    );\n+  }\n+}\n+\n+let jsx = (\n+  <div>\n+    <h1 >你好</h1>\n+    <MountClassComponent  name=\"还有钱\" />\n+  </div>\n+);\n+\n+\n console.log(jsx);\n \n ReactDOM.render(jsx, document.getElementById(\"root\"));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667404833418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-02 23:48:16\n+ * @LastEditTime: 2022-11-03 00:00:32\n  */\n \n \n \n@@ -78,9 +78,9 @@\n \n class MountClassComponent extends React.Component {\n   render() {\n     return (\n-      <div className=\"title1\" >类组件表示:{this.props.name}</div>\n+      <h1 className=\"title1\" >类组件表示:{this.props.name}</h1>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667404981548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:00:32\n+ * @LastEditTime: 2022-11-03 00:03:01\n  */\n \n \n \n@@ -76,8 +76,12 @@\n import React from \"react\";\n import ReactDOM from \"react-dom\";\n \n class MountClassComponent extends React.Component {\n+  constructor(props) {\n+    super(props)\n+    this.state = {num:0}\n+  }\n   render() {\n     return (\n       <h1 className=\"title1\" >类组件表示:{this.props.name}</h1>\n     );\n"
+                },
+                {
+                    "date": 1667405000691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     this.state = {num:0}\n   }\n   render() {\n     return (\n-      <h1 className=\"title1\" >类组件表示:{this.props.name}</h1>\n+      <h1 className=\"title1\" >类组件表示:{this.props.mum}</h1>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667405042788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:03:01\n+ * @LastEditTime: 2022-11-03 00:04:02\n  */\n \n \n \n@@ -82,9 +82,9 @@\n     this.state = {num:0}\n   }\n   render() {\n     return (\n-      <h1 className=\"title1\" >类组件表示:{this.props.mum}</h1>\n+      <h1 className=\"title1\" >类组件表示:{this.state.mum}</h1>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667405119886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:04:02\n+ * @LastEditTime: 2022-11-03 00:05:19\n  */\n \n \n \n@@ -82,9 +82,9 @@\n     this.state = {num:0}\n   }\n   render() {\n     return (\n-      <h1 className=\"title1\" >类组件表示:{this.state.mum}</h1>\n+      <h1>类组件表示:{this.state.mum}</h1>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667405144262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     this.state = {num:0}\n   }\n   render() {\n     return (\n-      <h1>类组件表示:{this.state.mum}</h1>\n+      <h1>类组件表示:{this.state.num}</h1>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667405184343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:05:19\n+ * @LastEditTime: 2022-11-03 00:06:23\n  */\n \n \n \n@@ -82,9 +82,9 @@\n     this.state = {num:0}\n   }\n   render() {\n     return (\n-      <h1>类组件表示:{this.state.num}</h1>\n+      <h1 className=\"title1\" >类组件表示:{this.state.num}</h1>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667405675735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:06:23\n+ * @LastEditTime: 2022-11-03 00:14:35\n  */\n \n \n \n@@ -80,11 +80,20 @@\n   constructor(props) {\n     super(props)\n     this.state = {num:0}\n   }\n+\n+  handleClick = () =>{\n+    this.setState({num:this.state.num+1})\n+\n+  }\n   render() {\n     return (\n-      <h1 className=\"title1\" >类组件表示:{this.state.num}</h1>\n+      <div>\n+        <h1 className=\"title1\" >类组件表示:{this.state.num}</h1>\n+      { /*事件 */}\n+      <button onClick={this.handleClick}> + </button>\n+      </div>\n     );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1667406378781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:14:35\n+ * @LastEditTime: 2022-11-03 00:26:18\n  */\n \n \n \n@@ -75,16 +75,20 @@\n \n import React from \"react\";\n import ReactDOM from \"react-dom\";\n \n+\n class MountClassComponent extends React.Component {\n   constructor(props) {\n     super(props)\n     this.state = {num:0}\n   }\n \n   handleClick = () =>{\n+    //类组件改变state状态只有一种方法就是setState（）\n     this.setState({num:this.state.num+1})\n+    this.setState({num:this.state.num+1})\n+    console.log(state);\n \n   }\n   render() {\n     return (\n"
+                },
+                {
+                    "date": 1667406406264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n   handleClick = () =>{\n     //类组件改变state状态只有一种方法就是setState（）\n     this.setState({num:this.state.num+1})\n     this.setState({num:this.state.num+1})\n-    console.log(state);\n+    console.log(this.state.num);\n \n   }\n   render() {\n     return (\n"
+                },
+                {
+                    "date": 1667406459291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:26:18\n+ * @LastEditTime: 2022-11-03 00:27:38\n  */\n \n \n \n@@ -102,9 +102,8 @@\n }\n \n let jsx = (\n   <div>\n-    <h1 >你好</h1>\n     <MountClassComponent  name=\"还有钱\" />\n   </div>\n );\n \n"
+                },
+                {
+                    "date": 1667407842943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \n  * @Author: kiko\n  * @Date: 2022-10-26 16:54:33\n  * @LastEditors: kiko\n- * @LastEditTime: 2022-11-03 00:27:38\n+ * @LastEditTime: 2022-11-03 00:50:42\n  */\n \n \n \n@@ -79,16 +79,25 @@\n \n class MountClassComponent extends React.Component {\n   constructor(props) {\n     super(props)\n-    this.state = {num:0}\n+    this.state = {\n+      num:0\n+    }\n   }\n \n   handleClick = () =>{\n     //类组件改变state状态只有一种方法就是setState（）\n     this.setState({num:this.state.num+1})\n+    console.log(this.state)\n     this.setState({num:this.state.num+1})\n-    console.log(this.state.num);\n+    console.log(this.state);\n+    setTimeout(() => {\n+      this.setState({ number: this.state.num + 1 })\n+      console.log(this.state) //2\n+      this.setState({ number: this.state.num + 1 })\n+      console.log(this.state) //3\n+    })\n \n   }\n   render() {\n     return (\n"
+                },
+                {
+                    "date": 1667407895748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,11 +91,11 @@\n     console.log(this.state)\n     this.setState({num:this.state.num+1})\n     console.log(this.state);\n     setTimeout(() => {\n-      this.setState({ number: this.state.num + 1 })\n+      this.setState({ num: this.state.num + 1 })\n       console.log(this.state) //2\n-      this.setState({ number: this.state.num + 1 })\n+      this.setState({ num: this.state.num + 1 })\n       console.log(this.state) //3\n     })\n \n   }\n"
                 }
             ],
             "date": 1667022657495,

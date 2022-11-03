@@ -1,99 +1,123 @@
 //初始化
-function render(vNode, container) {
-    let newDom = createDOM(vNode)
-    console.log(newDom);
-    //根据虚拟DOM生成真实DOM
-    container.appendChild(newDom)
+function render(vdom, container) {
+    // 本质就是挂载，因container本身存在于文档之中，所以挂载操作会触发渲染
+    mount(vdom, container);
 }
 
-//创建Dom
-function createDOM(vNode) {
-    //如果是文本类型的，就直接创建文本节点，也是递归的出口
-    if (Object(vNode) !== vNode) {
-        return document.createTextNode(vNode)
-    }
+function mount(vdom, container) {
+    // 将第一个参数变成真实DOM，插入到第二个参数挂载元素上
+    const DOM = createDOM(vdom);
+    container.append(DOM);
+}
 
-    let { type, props } = vNode
-    //真实dom
-    let DOM
+export function createDOM(vdom) {
+    const type = getType(vdom);
+    const getDom = typeMap.get(type);
+    // @ts-ignore
+    let DOM = getDom(vdom);
+    // vdom和DOM一一对应，这里的vdom是四种类型
+    type !== 'text' && (vdom.dom = DOM);
+    console.log(vdom);
+    return DOM;
+}
 
-    if (typeof type === "function") {
-        if (type.isClassComponent) {       //判断是类式组件还是函数式组件，分别处理
-            return mountClassComponent(vNode)
-        }
-        return mountFunctionComponent(vNode)
-    } else {
-        DOM = document.createElement(type)
-    }
-    // 处理props
+const typeMap = new Map([
+    ['text', handleTextType],
+    ['element', handleElementType],
+    ['function', handleFunctionType],
+    ['class', handleClassType],
+]);
+// vdom有四种类型
+// 1. "直接就是字符串"
+const handleTextType = (vdom) => document.createTextNode(vdom || '');
+// 2. {type:'div',props:{...}}  type是字符串，组件根元素是原生标签
+const handleElementType = (vdom) => createElementDOM(vdom);
+// 3. {type:function X(){ return <h1/>},props:{...}}，type是函数，返回值才是vdom
+const handleFunctionType = (vdom) => {
+    const {
+        type: fn,
+        props
+    } = vdom;
+    const vdomReturn = fn(props);
+    return createElementDOM(vdomReturn);
+};
+// 4. {type: class x ...{ render(){return <h1/>} },props:{///}}，type是函数，
+// 但是静态属性有isClassComponent，实例的render函数返回值才是vdom
+const handleClassType = (vdom) => {
+    const {
+        type: classFn,
+        props
+    } = vdom;
+    const instance = new classFn(props);
+    // 这里将本身的vdom 绑定到实例上（不是vdomReturn，不然找不到curRenderVdom）
+    instance.curRenderVdom = vdom;
+    console.log('执行');
+    const vdomReturn = instance.render(props);
+    return createElementDOM(vdomReturn);
+};
+// 根据vdom得到类型，从而根据类型，调用相应的方法生成真实DOM
+const getType = (vdom) => {
+    const isTextNode =
+        typeof vdom === 'string' || typeof vdom === 'number' || vdom == null;
+    if (isTextNode) return 'text';
+
+    const isObject = typeof vdom === 'object';
+    const isElementNode = isObject && typeof vdom.type === 'string';
+    if (isElementNode) return 'element';
+
+    const isFn = isObject && typeof vdom.type === 'function';
+    return isFn && vdom.type.isClassComponent ? 'class' : 'function';
+};
+
+function createElementDOM(vdom) {
+    const {
+        type,
+        props
+    } = vdom;
+    let DOM = document.createElement(type);
     if (props) {
-        //更新
-        updateProps(DOM, {}, props) //真实dom和旧属性，新属性
-        //处理children
-        let { children } = props
-        if (children) { //span 不显示  写一个handleChildren方法处里children 
-            handleChildren(DOM, children)
-        }
-
+        updateProps(DOM, props);
+        const {
+            children
+        } = props;
+        children && updateChildren(DOM, children);
     }
-    return DOM
+    return DOM;
 }
-
-//处理类组件
-function mountClassComponent(vNode) {
-    let { type, props } = vNode
-    let classInstance = new type(props)
-    let fvNode = classInstance.render()    //render的返回值才虚拟DOM
-    return createDOM(fvNode)
-}
-
-//处理函数组件
-function mountFunctionComponent(vNode) {
-    let { type, props } = vNode
-    let cvNode = type(props)       //函数执行的返回值就是虚拟DOM
-    return createDOM(cvNode)
-}
-
-//更新props
-function updateProps(DOM, oldProps, newProps) {  //props:{children, className, style, onXXX}
-    if (newProps) {
-        for (let key in newProps) {
-            if (key === "children") {
-                continue
-            } else if (key === "style") {
-                let styleObject = newProps[key]
-                for (let item in styleObject) {
-                    DOM.style[item] = styleObject[item]
-                }
-
-            } else if (key.startsWith("on")) {
-                DOM[key.toLocaleLowerCase()] = newProps[key]
-            } else {
-                DOM[key] = newProps[key]
-            }
+//处理props
+function updateProps(DOM, props) {
+    // 正常遍历就好，特殊的特殊处理
+    for (const key in props) {
+        if (key === 'children') continue;
+        // 事件处理！！
+        if (/on[A-Z]+/.test(key)) {
+            DOM[key.toLowerCase()] = props[key];
+            continue;
         }
+        if (key === 'style') {
+            updateStyle(DOM, props[key]);
+            continue;
+        }
+        DOM[key] = props[key];
     }
 
-
-    if (oldProps) {
-        for (let key in oldProps) {
-            if (!newProps[key]) DOM[key] = null
+    function updateStyle(DOM, styleObj) {
+        for (const key in styleObj) {
+            DOM.style[key] = styleObj[key];
         }
     }
 }
-
-//更新children
-function handleChildren(DOM, children) {
-    if (children instanceof Array) {
-        children.forEach(child => render(child, DOM))
-    } else {
-        render(children, DOM)
-    }
+//处理children
+function updateChildren(DOM, children) {
+    // 单个节点，直接插入（挂载）到DOM上; 多个节点，遍历插入
+    const isOneChildren = !Array.isArray(children);
+    isOneChildren
+        ?
+        mount(children, DOM) :
+        children.forEach((child) => mount(child, DOM));
 }
-
 
 const ReactDOM = {
-    render
-}
-
-export default ReactDOM
+    render,
+};
+export default ReactDOM;
