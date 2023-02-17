@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1667034364961,
@@ -12,6 +12,10 @@
                 {
                     "date": 1667034381031,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-\r\n function createElement(){\r\n     return{\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1676535407322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,46 @@\n-function createElement(){\r\n-    return{\r\n+/*\r\n+ * @Descripttion: \r\n+ * @version: \r\n+ * @Author: kiko\r\n+ * @Date: 2023-02-15 15:24:45\r\n+ * @LastEditors: kiko\r\n+ * @LastEditTime: 2023-02-16 16:16:45\r\n+ */\r\n+import { REACT_ELEMENT } from \"./static\"\r\n+import Component from \"./component\"\r\n \r\n+function createElement(type, config, children){   // 标签类别  config   标签内容\r\n+    let key = null, ref = null\r\n+\r\n+    if(config){\r\n+        key = config.key\r\n+        ref = config.ref\r\n+        //删除属性\r\n+        delete config.key\r\n+        delete config.ref\r\n     }\r\n \r\n+    let props = {...config}\r\n+\r\n+    if(arguments.length > 3){\r\n+        props.children = Array.from(arguments).slice(2)\r\n+    }else if(arguments.length === 3){\r\n+        props.children = children\r\n+    }\r\n+\r\n+\r\n+    return {\r\n+        $$typeof: REACT_ELEMENT,\r\n+        type,\r\n+        ref,\r\n+        key,\r\n+        props,\r\n+    }\r\n }\r\n-const React ={\r\n-    createElement\r\n \r\n+const React = {\r\n+    createElement,\r\n+    Component       //class Xx extends React.Component\r\n }\r\n \r\n-export default React\r\n+export default React\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1667034364961,

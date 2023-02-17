@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/vDomHandle.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1676654182254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676654191246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2023-02-17 02:15:59\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2023-02-18 01:16:21\r\n+ * @LastEditTime: 2023-02-18 01:16:31\r\n  */\r\n //@1.1 createElement创建虚拟dom\r\n export  function createElement(ele,props,...children) {\r\n     let vDom={\r\n"
+                },
+                {
+                    "date": 1676654199133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2023-02-17 02:15:59\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2023-02-18 01:16:31\r\n+ * @LastEditTime: 2023-02-18 01:16:39\r\n  */\r\n //@1.1 createElement()创建虚拟dom\r\n export  function createElement(ele,props,...children) {\r\n     let vDom={\r\n"
+                }
+            ],
+            "date": 1676654182253,
+            "name": "Commit-0",
+            "content": "/*\r\n * @Descripttion: \r\n * @version: \r\n * @Author: kiko\r\n * @Date: 2023-02-17 02:15:59\r\n * @LastEditors: kiko\r\n * @LastEditTime: 2023-02-18 01:16:21\r\n */\r\n//@1.1创建虚拟dom\r\nexport  function createElement(ele,props,...children) {\r\n    let vDom={\r\n        $$typeof:Symbol('react.element'),\r\n        key:null,\r\n        ref:null,\r\n        props:{},\r\n        type:null\r\n    };\r\n\r\n    //@1.2处理数据\r\n    let len =children.length;\r\n    \r\n    vDom.type=ele,\r\n    if(props!=null){\r\n        vDom.props={\r\n            ...props\r\n        }\r\n    };\r\n    if(len===1){\r\n        vDom.props.children=children[0];\r\n    }\r\n    if(len>1){\r\n        vDom.props.children=children;\r\n    }\r\n\r\n\r\n    return vDom ;\r\n}"
+        }
+    ]
+}

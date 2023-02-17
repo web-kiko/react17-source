@@ -1,0 +1,26 @@
+{
+    "sourceFile": "virtualDom.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1676535573498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676535593431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2023-02-16 16:19:17\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2023-02-16 16:19:32\r\n+ * @LastEditTime: 2023-02-16 16:19:53\r\n -->\r\n jsx处理机制\r\n \r\n 第一步：我们把jsx语法，先编译成虚拟Dom对象[vDOM]\r\n"
+                },
+                {
+                    "date": 1676654043689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n  * @version: \r\n  * @Author: kiko\r\n  * @Date: 2023-02-16 16:19:17\r\n  * @LastEditors: kiko\r\n- * @LastEditTime: 2023-02-18 01:13:33\r\n+ * @LastEditTime: 2023-02-18 01:14:03\r\n -->\r\n jsx处理机制\r\n \r\n 第一步：我们把jsx语法，先编译成虚拟Dom对象[vDOM]\r\n"
+                }
+            ],
+            "date": 1676535573498,
+            "name": "Commit-0",
+            "content": "<!--\r\n * @Descripttion: \r\n * @version: \r\n * @Author: kiko\r\n * @Date: 2023-02-16 16:19:17\r\n * @LastEditors: kiko\r\n * @LastEditTime: 2023-02-16 16:19:32\r\n-->\r\n"
+        }
+    ]
+}
