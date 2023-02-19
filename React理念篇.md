@@ -93,8 +93,6 @@ commit阶段发生在commitRoot函数中，该函数主要遍历effectList，分
 # jsx
 jsx是js语言的扩展，react通过babel词法解析（具体怎么转换可以查阅babel相关插件），将jsx转换成React.createElement，React.createElement方法返回virtual-dom对象（内存中用来描述dom阶段的对象），所有jsx本质上就是React.createElement的语法糖，它能声明式的编写我们想要组件呈现出什么样的ui效果。
 
-通过[jsx代码的实现](https://github.com/web-kiko/react17-source/blob/main/src/index.js)
-
 我们可以把React的核心精简后变成` const React = { createElement, Component }` 
 
 React.createElement：创建虚拟DOM,
